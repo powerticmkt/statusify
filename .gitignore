@@ -11,3 +11,10 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore the .idea directory
+.idea/
+
+# Ignore all gEdit temp files.
+*~
+*/*~
