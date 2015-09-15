@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  string: MyString
+  component: MyString
+  string: MyString
+  status: MyString
+  string: MyString
+  public: MyString
+  boolean: MyString
+  message: MyString
+  string: MyString
+  begins: MyString
+  time: MyString
+  ends: MyString
+  time: MyString
+
+two:
+  name: MyString
+  string: MyString
+  component: MyString
+  string: MyString
+  status: MyString
+  string: MyString
+  public: MyString
+  boolean: MyString
+  message: MyString
+  string: MyString
+  begins: MyString
+  time: MyString
+  ends: MyString
+  time: MyString
