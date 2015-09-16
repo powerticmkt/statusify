@@ -1,0 +1,8 @@
+development:
+  name: Statusify
+
+test:
+  name: Statusify
+
+production:
+  name: Statusify
