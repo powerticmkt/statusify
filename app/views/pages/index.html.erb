@@ -1,6 +1,6 @@
 <div class="status_page">
 
-  <% if @active_incidents.blank? %>
+  <% if active_incidents.blank? %>
     <div class="alert alert-success" id="status-summary">All systems up!</div>
   <% else %>
     <div class="alert alert-danger" id="status-summary">Some systems down!</div>
