@@ -10,7 +10,7 @@ Statusify is fast, free and customizable.
 
 ## Credits
 
-Statusify is inspired by [Cachet](http://cachethq.io) and [GitHub Status](htpps://status.github.com).
+Statusify is inspired by [Cachet](http://cachethq.io) and [GitHub Status](https://status.github.com).
 
 ## License
 
