@@ -1,12 +1,4 @@
 <div class="status_page">
-  <header id="header-main pull-left">
-    <% if @active_incidents.blank? %>
-        <div class="up" id="header-status"><h1>Statusify</h1></div>
-    <% else %>
-        <div class="down" id="header-status"><h1>Statusify</h1></div>
-    <% end %>
-    <hr class="top-hr"/>
-  </header>
 
   <% if @active_incidents.blank? %>
     <div class="alert alert-success" id="status-summary">All systems up!</div>
@@ -14,4 +6,10 @@
     <div class="alert alert-danger" id="status-summary">Some systems down!</div>
   <% end %>
 
+  <h2 align="center">Past Incidents</h2>
+  <div id="recent-incidents">
+    <% @incidents.all.each do |i| %>
+        <%= i.name %> <br />
+     <% end %>
+  </div>
 </div>

@@ -1,0 +1,22 @@
+<%= render 'shared/error_messages' %>
+
+<%= form_for(@new_incident) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :message %>
+    <%= f.text_area :message %>
+
+    <%= f.label :component %>
+    <%= f.text_area :component %>
+
+    <%= f.label 'Begins:' %>
+    <%= f.datetime_select :begins %>
+
+    <br />
+
+    <%= f.label 'Ends:' %>
+    <%= f.datetime_select :ends %>
+
+    <%= f.submit 'Create Issue', class: 'btn btn-primary' %>
+<% end %>
