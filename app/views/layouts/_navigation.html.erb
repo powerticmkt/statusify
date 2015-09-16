@@ -1,9 +1,9 @@
 <nav id="pull-left" class="navbar navbar-static-top">
   <div class="navbar-brand">
   <% if @active_incidents.blank? %>
-      <div class="up" id="header-status"><p>Statusify</p></div>
+      <div id="header-status"><%= APP_CONFIG['name'] %> <span class="up">Status</span></div>
   <% else %>
-      <div class="down" id="header-status"><p>Statusify</p></div>
+      <div id="header-status"><%= APP_CONFIG['name'] %> <span class="down">Status</span></div>
   <% end %>
   </div>
 </nav>
