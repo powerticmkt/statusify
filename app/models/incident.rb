@@ -5,7 +5,7 @@ class Incident < ActiveRecord::Base
   # Incidents may be public or private.
   # incident_id is auto-assigned and remains same across incident updates.
 
-  validates :name, presence: true, length: {minimum: 5, maximum: 256}
+  validates :name, presence: true, length: {maximum: 256}
   validates_presence_of :message
   validates_presence_of :component
   validates_presence_of :public

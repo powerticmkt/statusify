@@ -1,0 +1,12 @@
+<% provide(:title, "Sign up") %>
+
+<div class="col-lg-2"></div>
+
+<div class="container container-fluid col-lg-8">
+<%= form_for @user do |form| %>
+  <%= render :partial => '/users/form', :object => form %>
+  <%= form.submit 'Sign up', :data => {:disable_with => 'Please wait...'}, :class => 'btn btn-primary btn-submit' %>
+<% end %>
+</div>
+
+<div class="col-lg-2"></div>

@@ -1,0 +1,10 @@
+<div class="timeline">
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+<% all_incidents.each do |i| %>
+    <h4 class="incident-date"><%= i.updated_at.strftime('%c') %></h4>
+    <h3 class="incident-name"><%= i.name %></h3>
+<% end %>
+</div>
+<div class="col-sm-2"></div>
+</div>

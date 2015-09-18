@@ -8,8 +8,6 @@
 
   <h2 align="center">Past Incidents</h2>
   <div id="recent-incidents">
-    <% @incidents.all.each do |i| %>
-        <%= i.name %> <br />
-     <% end %>
+    <%= render :partial => 'pages/incidents' %>
   </div>
 </div>

@@ -11,7 +11,8 @@ class DashboardController < ApplicationController
     @new_incident[:user_id] = current_user.id
     if @new_incident.save
       # Handle successful save
-      redirect_to root_path and return
+      redirect_to root_path
+    else
       render 'dashboard/index'
     end
   end
