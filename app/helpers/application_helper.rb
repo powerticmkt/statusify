@@ -5,9 +5,9 @@ module ApplicationHelper
 
   def all_incidents
     if signed_in?
-      @all_incidents ||= Incident.all
+      @all_incidents ||= Incident.all.order('updated_at DESC')
     else
-      @all_incidents ||= Incident.all.select { |i| i.public == true}
+      @all_incidents ||= Incident.all.order('updated_at DESC').select { |i| i.public == true}
     end
   end
 end
