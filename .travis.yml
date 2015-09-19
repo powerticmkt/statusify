@@ -4,7 +4,7 @@ rvm:
   - 2.1
   - ruby-head
 before_script:
-	- psql -c 'create database statusify_test;' -U postgres
+  - psql -c 'create database statusify_test;' -U postgres
   - rm config/database.yml
   - cp config/database.yml.ci config/database.yml
   
