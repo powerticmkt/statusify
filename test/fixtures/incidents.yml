@@ -1,33 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  string: MyString
-  component: MyString
-  string: MyString
-  status: MyString
-  string: MyString
-  public: MyString
-  boolean: MyString
-  message: MyString
-  string: MyString
-  begins: MyString
-  time: MyString
-  ends: MyString
-  time: MyString
+  name: 'Incident name'
+  component: 'API'
+  status: 'Down'
+  public: true
+  message: 'Random message'
+  active: true
+  begins: '<%= Time.now %>'
+  ends: '<%= Time.now %>'
+  incident_id: 1
 
 two:
-  name: MyString
-  string: MyString
-  component: MyString
-  string: MyString
-  status: MyString
-  string: MyString
-  public: MyString
-  boolean: MyString
-  message: MyString
-  string: MyString
-  begins: MyString
-  time: MyString
-  ends: MyString
-  time: MyString
+  name: 'Other incident name'
+  component: 'Web App'
+  status: 'Investigating'
+  public: false
+  message: 'Random message'
+  active: true
+  begins: '<%= Time.now %>'
+  ends: '<%= Time.now %>'
+  incident_id: 2
