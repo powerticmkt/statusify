@@ -1,4 +1,4 @@
-# Statusify
+# Statusify [![Build Status](https://travis-ci.org/ur0/statusify.svg)](https://travis-ci.org/ur0/statusify)
 
 Statusify is a web-application status app, written entirely in Ruby.
 
