@@ -4,6 +4,10 @@ module ApplicationHelper
   end
 
   def all_incidents
-    @all_incidents ||= Incident.all
+    if signed_in?
+      @all_incidents ||= Incident.all
+    else
+      @all_incidents ||= Incident.all.select { |i| i.public == true}
+    end
   end
 end

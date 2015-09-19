@@ -4,6 +4,14 @@
 <% all_incidents.each do |i| %>
     <h4 class="incident-date"><%= i.updated_at.strftime('%c') %></h4>
     <h3 class="incident-name"><%= i.name %></h3>
+    <% if signed_in? %>
+          <a href="incidents/<%= i.id %>">
+            <button class="btn btn-warning">Edit incident</button>
+          </a>
+          <a href="incidents/delete/<%= i.id %>">
+            <button class="btn btn-danger">Delete Incident</button>
+          </a>
+    <% end %>
 <% end %>
 </div>
 <div class="col-sm-2"></div>
