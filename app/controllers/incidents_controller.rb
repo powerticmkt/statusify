@@ -10,6 +10,7 @@ class IncidentsController < ApplicationController
     @incident = current_user.incidents.new(incident_params)
     if @incident.save
       # Handle successful save
+      flash[:success] = 'Incident created successfully.'
       redirect_to root_path
       response.headers['status'] ='success'
     else
@@ -32,6 +33,7 @@ class IncidentsController < ApplicationController
     @incident[:incident_id] = params[:id]
     if @incident.save
       response.headers['status'] ='success'
+      flash[:success] = 'Updated incident successfully.'
       redirect_to root_path
       i = Incident.find_by_id(params[:id])
       i.public = false
@@ -48,8 +50,10 @@ class IncidentsController < ApplicationController
     if !!i
       response.headers['status'] = 'success'
       i.delete
+      flash[:success] = 'Incident deleted successfully.'
     else
       response.headers['status'] = 'failed'
+      flash[:danger] = 'Failed to delete incident.'
     end
     redirect_to root_url
   end

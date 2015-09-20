@@ -45,10 +45,10 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     get "/incidents/#{Incident.first.id}"
     assert_response :success, 'Could not get edit page'
     # Edit incident with valid parameters
-    r = create_incident(Incident.first, "/incidents?id=#{Incident.first.id}")
+    r = edit_incident(Incident.first, "/incidents/#{Incident.first.id}")
     assert_equal 'success', r.headers['status'], 'Could not edit valid incident'
     # Edit incident with invalid parameters
-    r = create_incident(Incident.new(name: nil, message: nil, component: nil), "/incidents?id=#{Incident.first.id}")
+    r = edit_incident(Incident.new(name: nil, message: nil, component: nil), "/incidents/#{Incident.first.id}")
     assert_equal 'failed', r.headers['status'], 'Could edit invalid incident'
   end
 
@@ -71,6 +71,13 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     # Path is where we send the POST request.
     return if i.class != Incident
     post path, 'incident[name]' => i.name, 'incident[message]' => i.message, 'incident[component]' => i.component
+    return response
+  end
+
+  def edit_incident(i, path)
+    # Path is where we send the PATCH request.
+    return if i.class != Incident
+    patch path, 'incident[name]' => i.name, 'incident[message]' => i.message, 'incident[component]' => i.component
     return response
   end
 
