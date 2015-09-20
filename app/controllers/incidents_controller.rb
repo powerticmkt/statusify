@@ -3,12 +3,11 @@ class IncidentsController < ApplicationController
   before_action :require_login
 
   def new
-    @incident ||= Incident.new
+    @incident ||= current_user.incidents.new
   end
 
   def create
-    @incident = Incident.new(incident_params)
-    @incident[:user_id] = current_user.id
+    @incident = current_user.incidents.new(incident_params)
     if @incident.save
       # Handle successful save
       redirect_to root_path
@@ -29,8 +28,7 @@ class IncidentsController < ApplicationController
     # Sets the incident with id as params[:id] as private
     # Keeps the same incident_id to mark as a update
     # ToDo: Revisit this
-    @incident = Incident.new(incident_params)
-    @incident[:user_id] = current_user.id
+    @incident = current_user.incidents.new(incident_params)
     @incident[:incident_id] = params[:id]
     if @incident.save
       response.headers['status'] ='success'

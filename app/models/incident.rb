@@ -1,10 +1,11 @@
 class Incident < ActiveRecord::Base
   # The 'incident' model.
-  # Incidents are created by Users (foreign key)
+  # Incidents are created by Users (belongs_to :user)
   # 'begins' and 'ends' are for scheduled incidents, like scheduled maintenance.
   # Incidents may be public or private.
   # incident_id is auto-assigned and remains same across incident updates.
 
+  belongs_to :user
   validates :name, presence: true, length: {maximum: 256}
   validates_presence_of :message
   validates_presence_of :component

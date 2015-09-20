@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150915174959) do
+ActiveRecord::Schema.define(version: 20150920181302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,12 +24,14 @@ ActiveRecord::Schema.define(version: 20150915174959) do
     t.string   "message"
     t.datetime "begins"
     t.datetime "ends"
-    t.integer  "user_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "active",      default: true
     t.integer  "incident_id"
+    t.integer  "user_id"
   end
+
+  add_index "incidents", ["user_id"], name: "index_incidents_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                                     null: false
@@ -44,5 +46,4 @@ ActiveRecord::Schema.define(version: 20150915174959) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
-  add_foreign_key "incidents", "users"
 end
