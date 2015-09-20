@@ -18,3 +18,7 @@
 # Ignore all gEdit temp files.
 *~
 */*~
+
+# Ignore the 'coverage' directory
+coverage/
+coverage/*
