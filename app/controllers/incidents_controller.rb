@@ -12,8 +12,10 @@ class IncidentsController < ApplicationController
     if @incident.save
       # Handle successful save
       redirect_to root_path
+      response.headers['status'] ='success'
     else
-      render 'incidents/index'
+      response.headers['status'] ='failed'
+      render 'incidents/new'
     end
   end
 
