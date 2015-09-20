@@ -45,10 +45,10 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     get "/incidents/#{Incident.first.id}"
     assert_response :success, 'Could not get edit page'
     # Edit incident with valid parameters
-    r = create_incident(Incident.first, '/incidents')
+    r = create_incident(Incident.first, "/incidents?id=#{Incident.first.id}")
     assert_equal 'success', r.headers['status'], 'Could not edit valid incident'
     # Edit incident with invalid parameters
-    r = create_incident(Incident.new(name: nil, message: nil, component: nil), '/incidents')
+    r = create_incident(Incident.new(name: nil, message: nil, component: nil), "/incidents?id=#{Incident.first.id}")
     assert_equal 'failed', r.headers['status'], 'Could edit invalid incident'
   end
 
