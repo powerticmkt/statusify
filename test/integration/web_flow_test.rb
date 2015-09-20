@@ -47,7 +47,7 @@ class WebFlowTest < ActionDispatch::IntegrationTest
 
   def create_incident(i)
     return if i.class != Incident
-    post '/incidents', 'incident[name]': i.name, 'incident[message]': i.message, 'incident[component]': i.component
+    post '/incidents', 'incident[name]' => i.name, 'incident[message]' => i.message, 'incident[component]' => i.component
     return response
   end
 
