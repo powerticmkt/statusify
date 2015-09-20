@@ -33,11 +33,33 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     get '/incidents/new'
     assert_response :success, 'Failed to get new incident page'
     # Create an incident same as the first one, provided by the fixtures
-    r = create_incident(Incident.first)
+    r = create_incident(Incident.first, '/incidents')
     assert_equal 'success', r.headers['status'], 'Could not create valid incident'
     # Create an invalid incident
-    r = create_incident(Incident.new(name: nil, message: nil, component: nil))
+    r = create_incident(Incident.new(name: nil, message: nil, component: nil), '/incidents')
     assert_equal 'failed', r.headers['status'], 'Could create invalid incident'
+  end
+
+  test 'modify incident' do
+    sign_in(User.first.email, 'password')
+    get "/incidents/#{Incident.first.id}"
+    assert_response :success, 'Could not get edit page'
+    # Edit incident with valid parameters
+    r = create_incident(Incident.first, '/incidents')
+    assert_equal 'success', r.headers['status'], 'Could not edit valid incident'
+    # Edit incident with invalid parameters
+    r = create_incident(Incident.new(name: nil, message: nil, component: nil), '/incidents')
+    assert_equal 'failed', r.headers['status'], 'Could edit invalid incident'
+  end
+
+  test 'delete incident' do
+    sign_in(User.first.email, 'password')
+    # Delete valid incident
+    r = delete_incident "/incidents/#{Incident.first.id}"
+    assert_equal 'success', r.headers['status'], 'Could not delete invalid incident'
+    # Delete invalid incident
+    r = delete_incident '/incidents/493243925'
+    assert_equal 'failed', r.headers['status'], 'Could delete invalid incident'
   end
 
   def sign_in(email, password)
@@ -45,10 +67,15 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     return response
   end
 
-  def create_incident(i)
+  def create_incident(i, path)
+    # Path is where we send the POST request.
     return if i.class != Incident
-    post '/incidents', 'incident[name]' => i.name, 'incident[message]' => i.message, 'incident[component]' => i.component
+    post path, 'incident[name]' => i.name, 'incident[message]' => i.message, 'incident[component]' => i.component
     return response
   end
 
+  def delete_incident(path)
+    delete path
+    return response
+  end
 end

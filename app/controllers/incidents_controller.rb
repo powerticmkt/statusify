@@ -33,19 +33,26 @@ class IncidentsController < ApplicationController
     @incident[:user_id] = current_user.id
     @incident[:incident_id] = params[:id]
     if @incident.save
+      response.headers['status'] ='success'
       redirect_to root_path
       i = Incident.find_by_id(params[:id])
       i.public = false
       i.save
     else
-      render plain: 'Failed'
+      response.headers['status'] ='failed'
+      redirect_to "/incidents/#{@incident.id}"
     end
   end
 
   def delete
     #ToDo: Warn the user
     i = Incident.find_by_id(params[:id])
-    i.delete if !i.nil?
+    if !!i
+      response.headers['status'] = 'success'
+      i.delete
+    else
+      response.headers['status'] = 'failed'
+    end
     redirect_to root_url
   end
 
