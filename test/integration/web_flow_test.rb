@@ -58,7 +58,7 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     r = delete_incident "/incidents/#{Incident.first.id}"
     assert_equal 'success', r.headers['status'], 'Could not delete invalid incident'
     # Delete invalid incident
-    r = delete_incident '/incidents/493243925'
+    r = delete_incident "/incidents/#{(rand * 10000).to_i}"
     assert_equal 'failed', r.headers['status'], 'Could delete invalid incident'
   end
 
