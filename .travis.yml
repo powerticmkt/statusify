@@ -1,7 +1,6 @@
 language: ruby
 rvm:
   - 2.2.3
-  - 2.1
   - ruby-head
 before_script:
   - psql -c 'create database statusify_test;' -U postgres
