@@ -2,9 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #header-status {
-  margin-left: 10px;
-  margin-bottom: 5px;
-  margin-top: 8px;
   font-weight: bold;
 }
 
@@ -17,7 +14,7 @@
 }
 
 .up {
-  color: #3C763D;
+  color: #50DE53;
 }
 
 .down {
@@ -28,4 +25,12 @@
   background-color: #EEEEEE;
   border: 2px;
   border-radius: 6px;
+}
+
+#navigation-1 {
+  margin-top: 1rem;
+  background-color: #2c3e50;
+  a {
+    color: #FFF;
+  }
 }

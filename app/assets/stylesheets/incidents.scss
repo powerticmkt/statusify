@@ -13,6 +13,7 @@ input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   @include box_sizing;
   margin-bottom: 15px !important;
+  color: #000 !important;
 }
 
 input, textarea, .uneditable-input {
