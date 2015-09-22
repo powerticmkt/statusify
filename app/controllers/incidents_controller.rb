@@ -1,5 +1,4 @@
 class IncidentsController < ApplicationController
-
   before_action :require_login
 
   def new
@@ -13,9 +12,9 @@ class IncidentsController < ApplicationController
       # Handle successful save
       flash[:success] = 'Incident created successfully.'
       redirect_to root_path
-      response.headers['status'] ='success'
+      response.headers['status'] = 'success'
     else
-      response.headers['status'] ='failed'
+      response.headers['status'] = 'failed'
       render 'incidents/new'
     end
   end
@@ -33,18 +32,18 @@ class IncidentsController < ApplicationController
     @incident.component = incident_params[:component]
     @event = @incident.events.build(message: incident_params[:event][:message], status: incident_params[:event][:status])
     if @incident.save && @event.save
-      response.headers['status'] ='success'
+      response.headers['status'] = 'success'
       flash[:success] = 'Updated incident successfully.'
       redirect_to root_path
     else
-      response.headers['status'] ='failed'
+      response.headers['status'] = 'failed'
       flash[:danger] = 'Please fill all entries.'
       redirect_to "/incidents/#{@incident.id}"
     end
   end
 
   def delete
-    #ToDo: Warn the user
+    # TODO: Warn the user
     i = Incident.find_by_id(params[:id])
     if !!i
       response.headers['status'] = 'success'
@@ -58,6 +57,7 @@ class IncidentsController < ApplicationController
   end
 
   private
+
   def incident_params
     params.require(:incident).permit(:name, :status, :component, events_attributes: [:status, :message], event: [:status, :message])
   end

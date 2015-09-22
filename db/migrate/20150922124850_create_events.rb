@@ -7,9 +7,9 @@ class CreateEvents < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-      remove_column :incidents, :message
-      remove_column :incidents, :begins
-      remove_column :incidents, :ends
-      remove_column :incidents, :incident_id
+    remove_column :incidents, :message
+    remove_column :incidents, :begins
+    remove_column :incidents, :ends
+    remove_column :incidents, :incident_id
   end
 end

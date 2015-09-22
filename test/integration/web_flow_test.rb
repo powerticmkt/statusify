@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class WebFlowTest < ActionDispatch::IntegrationTest
-
   test 'get index' do
     get '/'
     assert_response :success, 'Failed to get index page'
@@ -41,7 +40,7 @@ class WebFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'modify incident' do
-    #ToDo: Rewrite this test
+    # TODO: Rewrite this test. Will lead to coverage issues.
   end
 
   test 'delete incident' do
@@ -50,31 +49,31 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     r = delete_incident "/incidents/#{Incident.first.id}"
     assert_equal 'success', r.headers['status'], 'Could not delete invalid incident'
     # Delete invalid incident
-    r = delete_incident "/incidents/#{(rand * 10000).to_i}"
+    r = delete_incident "/incidents/#{(rand * 10_000).to_i}"
     assert_equal 'failed', r.headers['status'], 'Could delete invalid incident'
   end
 
   def sign_in(email, password)
     post_via_redirect '/session', 'session[email]' => email, 'session[password]' => password
-    return response
+    response
   end
 
   def create_incident(i, path)
     # Path is where we send the POST request.
     return if i.class != Incident
     post path, 'incident[name]' => i.name, 'incident[events_attributes][0][message]' => 'Test Message', 'incident[component]' => i.component, 'incident[events_attributes][0][status]' => 'Test status'
-    return response
+    response
   end
 
   def edit_incident(i, path)
     # Path is where we send the PATCH request.
     return if i.class != Incident
     patch path, 'incident[name]' => i.name, 'incident[event][message]' => 'Test Message', 'incident[component]' => i.component, 'incident[event][status]' => 'Test status'
-    return response
+    response
   end
 
   def delete_incident(path)
     delete path
-    return response
+    response
   end
 end

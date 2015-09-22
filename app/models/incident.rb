@@ -6,7 +6,7 @@ class Incident < ActiveRecord::Base
 
   belongs_to :user
   has_many :events, dependent: :destroy
-  validates :name, presence: true, length: {maximum: 256}
+  validates :name, presence: true, length: { maximum: 256 }
   validates_presence_of :component
   validates_presence_of :public
   validates_presence_of :user_id
@@ -14,8 +14,8 @@ class Incident < ActiveRecord::Base
   accepts_nested_attributes_for :events
 
   private
-    def incident_params
-      params.require(:incident).permit(:name, :status, :user_id, :message)
-    end
 
+  def incident_params
+    params.require(:incident).permit(:name, :status, :user_id, :message)
+  end
 end

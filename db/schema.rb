@@ -11,45 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922124850) do
-
+ActiveRecord::Schema.define(version: 20_150_922_124_850) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "events", force: :cascade do |t|
-    t.string   "message"
-    t.string   "status"
-    t.integer  "incident_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table 'events', force: :cascade do |t|
+    t.string 'message'
+    t.string 'status'
+    t.integer 'incident_id'
+    t.datetime 'created_at',  null: false
+    t.datetime 'updated_at',  null: false
   end
 
-  add_index "events", ["incident_id"], name: "index_events_on_incident_id", using: :btree
+  add_index 'events', ['incident_id'], name: 'index_events_on_incident_id', using: :btree
 
-  create_table "incidents", force: :cascade do |t|
-    t.string   "name"
-    t.string   "component"
-    t.string   "status"
-    t.boolean  "public",     default: true
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.boolean  "active",     default: true
-    t.integer  "user_id"
+  create_table 'incidents', force: :cascade do |t|
+    t.string 'name'
+    t.string 'component'
+    t.string 'status'
+    t.boolean 'public', default: true
+    t.datetime 'created_at',                null: false
+    t.datetime 'updated_at',                null: false
+    t.boolean 'active', default: true
+    t.integer 'user_id'
   end
 
-  add_index "incidents", ["user_id"], name: "index_incidents_on_user_id", using: :btree
+  add_index 'incidents', ['user_id'], name: 'index_incidents_on_user_id', using: :btree
 
-  create_table "users", force: :cascade do |t|
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
-    t.string   "email",                                          null: false
-    t.string   "encrypted_password", limit: 128,                 null: false
-    t.string   "confirmation_token", limit: 128
-    t.string   "remember_token",     limit: 128,                 null: false
-    t.boolean  "admin",                          default: false
+  create_table 'users', force: :cascade do |t|
+    t.datetime 'created_at',                                     null: false
+    t.datetime 'updated_at',                                     null: false
+    t.string 'email',                                          null: false
+    t.string 'encrypted_password', limit: 128,                 null: false
+    t.string 'confirmation_token', limit: 128
+    t.string 'remember_token',     limit: 128, null: false
+    t.boolean 'admin', default: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", using: :btree
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
-
+  add_index 'users', ['email'], name: 'index_users_on_email', using: :btree
+  add_index 'users', ['remember_token'], name: 'index_users_on_remember_token', using: :btree
 end
