@@ -3,16 +3,12 @@
 
 <%= form_for(@incident) do |f| %>
     <%= f.text_field :name, placeholder: 'Incident name', :class => 'form-control' %>
-		<br />
-    <%= f.text_area :message, placeholder: 'Message to users', :class => 'form-control' %>
-		<br />
-    <%= f.text_field :component, placeholder: 'Components affected', :class => 'form-control' %>
-		<br />
-    <%= f.label 'Begins:'%>
-    <%= f.datetime_select :begins, :class => 'form-control' %>
     <br />
-    <%= f.label 'Ends:'%>
-    <%= f.datetime_select :ends %>
-		<br />
+    <%= f.text_field :component, placeholder: 'Components affected', :class => 'form-control' %>
+    <br />
+    <%= f.fields_for :events do |ff| %>
+    <%= ff.text_area :message, placeholder: 'Message to users', :class => 'form-control' %>
+    <%= ff.text_field :status, placeholder: 'Current status', class: 'form-control' %>
+    <% end %>
     <%= f.submit 'Create Incident', class: 'btn btn-primary', :data => {disable_with: 'Creating incident...'} %>
 <% end %>

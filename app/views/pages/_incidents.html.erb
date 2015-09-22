@@ -1,18 +1,27 @@
 <div class="timeline">
-<div class="col-sm-2"></div>
-<div class="col-sm-8">
-<% all_incidents.each do |i| %>
-    <h4 class="incident-date"><%= i.updated_at.strftime('%c') %></h4>
-    <h3 class="incident-name"><%= i.name %></h3>
-    <% if signed_in? %>
-          <a href="incidents/<%= i.id %>">
-            <button class="btn btn-warning">Edit incident</button>
-          </a>
-          <a href="incidents/delete/<%= i.id %>">
-            <button class="btn btn-danger">Delete Incident</button>
-          </a>
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <% all_incidents.each do |i| %>
+        <p class="incident-date"><%= i.updated_at.strftime('%e %b, %Y') %></p>
+
+        <p class="incident-name"><%= i.name %></p>
+        <% all_events(i).each do |e| %>
+            <hr/>
+            <p class="incident-description"><b><%= e.status %></b>- &nbsp;<%= e.message %></p>
+
+            <p class="incident-updated-at"><%= e.updated_at.strftime('%b %e, %H:%M %Z') %></p>
+        <% end %>
+
+        <% if signed_in? %>
+            <a href="/incidents/<%= i.id %>">
+              <button class="btn btn-warning">Update Incident</button>
+            </a>
+            <a href="/incidents/delete/<%= i.id %>" data-confirm="Are you sure? Deleting an incident is irreversible.">
+              <button class="btn btn-danger">Delete Incident</button>
+            </a>
+        <% end %>
+
     <% end %>
-<% end %>
-</div>
-<div class="col-sm-2"></div>
+  </div>
+  <div class="col-sm-2"></div>
 </div>

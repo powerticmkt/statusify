@@ -1,18 +1,14 @@
 <h3>Edit Incident</h3>
-<%= render 'shared/error_messages' %>
+<%= render partial: 'shared/error_messages' %>
 
 <%= form_for @incident, url: {id: @incident.id} do |f| %>
     <%= f.text_field :name, input_html: {value: @incident.name}, :class => 'form-control'%>
 		<br />
-    <%= f.text_area :message, input_html: {value: @incident.message}, :class => 'form-control'%>
-		<br />
     <%= f.text_field :component, input_html: {value: @incident.component}, :class => 'form-control'%>
-		<br />
-    <%= f.label 'Begins:' %>
-    <%= f.datetime_select :begins, input_html: {value: @incident.begins}, :class => 'form-control' %>
     <br />
-    <%= f.label 'Ends:' %>
-    <%= f.datetime_select :ends, input_html: {value: @incident.ends}, :class => 'form-control' %>
-		<br />
+    <%= f.fields_for :event do |ff| %>
+        <%= ff.text_area :message, value: @event.message, :class => 'form-control' %>
+        <%= ff.text_field :status, value: @event.status, :class => 'form-control' %>
+    <% end %>
     <%= f.submit 'Edit Incident', class: 'btn btn-primary' %>
 <% end %>
