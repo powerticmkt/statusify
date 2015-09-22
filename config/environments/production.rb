@@ -78,5 +78,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Silence ActiveRecord SQL logs.
-  ActiveRecord::Base.logger.level = 1
+  config.after_initialize do
+    ActiveRecord::Base.logger = Rails.logger.clone
+    ActiveRecord::Base.logger.level = 1
+  end
 end
