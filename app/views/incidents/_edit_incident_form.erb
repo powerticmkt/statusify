@@ -2,17 +2,17 @@
 <%= render 'shared/error_messages' %>
 
 <%= form_for @incident, url: {id: @incident.id} do |f| %>
-    <%= f.text_field :name, input_html: {value: @incident.name}%>
+    <%= f.text_field :name, input_html: {value: @incident.name}, :class => 'form-control'%>
 		<br />
-    <%= f.text_area :message, input_html: {value: @incident.message}%>
+    <%= f.text_area :message, input_html: {value: @incident.message}, :class => 'form-control'%>
 		<br />
-    <%= f.text_field :component, input_html: {value: @incident.component}%>
+    <%= f.text_field :component, input_html: {value: @incident.component}, :class => 'form-control'%>
 		<br />
     <%= f.label 'Begins:' %>
-    <%= f.datetime_select :begins, input_html: {value: @incident.begins} %>
+    <%= f.datetime_select :begins, input_html: {value: @incident.begins}, :class => 'form-control' %>
     <br />
     <%= f.label 'Ends:' %>
-    <%= f.datetime_select :ends, input_html: {value: @incident.ends} %>
+    <%= f.datetime_select :ends, input_html: {value: @incident.ends}, :class => 'form-control' %>
 		<br />
     <%= f.submit 'Edit Incident', class: 'btn btn-primary' %>
 <% end %>

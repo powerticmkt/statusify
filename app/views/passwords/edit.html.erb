@@ -1,0 +1,17 @@
+<div class="col-lg-2"></div>
+<div class="col-lg-8" style="margin-top: 5rem;">
+<%= form_for(:password_reset,
+             :url => user_password_path(@user, :token => @user.confirmation_token),
+             :html => { :method => :put }) do |form| %>
+  <%= error_messages_for :user %>
+  <div class="password_field">
+    <%= form.label :password, "Password" %>
+    <%= form.password_field :password, :class => 'form-control' %>
+  </div>
+
+  <div class="form_bottom">
+    <%= form.submit 'Submit', :data => {:disable_with => 'Resetting password..'}, :class => 'btn btn-primary' %>
+  </div>
+<% end %>
+</div>
+<div class="col-lg-2"></div>

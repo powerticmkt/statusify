@@ -15,3 +15,9 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+jQuery(document).ready(function(){
+    jQuery('#toggleflash').on('click', function(event) {
+        jQuery('.flash').toggle('show');
+    });
+});

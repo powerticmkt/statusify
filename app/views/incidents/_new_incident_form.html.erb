@@ -2,17 +2,17 @@
 <%= render 'shared/error_messages' %>
 
 <%= form_for(@incident) do |f| %>
-    <%= f.text_field :name, placeholder: 'Incident name' %>
+    <%= f.text_field :name, placeholder: 'Incident name', :class => 'form-control' %>
 		<br />
-    <%= f.text_area :message, placeholder: 'Message to users' %>
+    <%= f.text_area :message, placeholder: 'Message to users', :class => 'form-control' %>
 		<br />
-    <%= f.text_field :component, placeholder: 'Components affected' %>
+    <%= f.text_field :component, placeholder: 'Components affected', :class => 'form-control' %>
 		<br />
-    <%= f.label 'Begins:' %>
-    <%= f.datetime_select :begins %>
+    <%= f.label 'Begins:'%>
+    <%= f.datetime_select :begins, :class => 'form-control' %>
     <br />
-    <%= f.label 'Ends:' %>
+    <%= f.label 'Ends:'%>
     <%= f.datetime_select :ends %>
 		<br />
-    <%= f.submit 'Create Issue', class: 'btn btn-primary' %>
+    <%= f.submit 'Create Incident', class: 'btn btn-primary', :data => {disable_with: 'Creating incident...'} %>
 <% end %>

@@ -2,7 +2,7 @@
 
 <div class="col-lg-2"></div>
 
-<div class="container container-fluid col-lg-8">
+<div class="container container-fluid col-lg-8" style="margin-top: 5rem;">
 <%= form_for @user do |form| %>
   <%= render :partial => '/users/form', :object => form %>
   <%= form.submit 'Sign up', :data => {:disable_with => 'Please wait...'}, :class => 'btn btn-primary btn-submit' %>
