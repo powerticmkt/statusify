@@ -2,12 +2,12 @@
 <div class="col-lg-8" style="margin-top: 5rem;">
 <%= form_for :session, :url => session_path do |form| %>
   <div class="text_field">
-    <%= form.label :who, 'Email', :class => 'form__label' %>
-    <%= form.text_field :who, :class => 'form__input' %>
+    <%= form.label :email, 'Email', :class => 'form__label' %>
+    <%= form.text_field :email, :class => 'form-control' %>
   </div>
   <div class="password_field">
     <%= form.label :password, t('activerecord.attributes.session.password'), :class => 'form__label' %>
-    <%= form.password_field :password, :class => 'form__input' %>
+    <%= form.password_field :password, :class => 'form-control' %>
   </div>
   <div class="form_bottom">
     <%= form.submit 'Sign in', :data => {:disable_with => 'Signing in...'}, :class => 'btn btn-primary' %>
