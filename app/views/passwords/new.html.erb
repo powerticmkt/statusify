@@ -1,0 +1,12 @@
+<div class="col-lg-2"></div>
+<div class="col-lg-8" style="margin-top: 5rem;">
+
+<%= form_for :password, :url => passwords_path do |form| %>
+  <div class="text_field">
+    <%= form.label :email, 'Email' %>
+    <%= form.email_field :email, :size => '25', :class => 'form-control' %>
+  </div>
+  <div class="submit_field">
+    <%= form.submit 'Reset password', :data => {:disable_with => 'Please wait...'}, :class => 'btn btn-primary' %>
+  </div>
+<% end %>
