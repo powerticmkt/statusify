@@ -2,7 +2,7 @@
   <div class="col-sm-2"></div>
   <div class="col-sm-8">
     <% all_incidents.each do |i| %>
-        <p class="incident-date"><%= i.updated_at.strftime('%e %b, %Y') %></p>
+        <p class="incident-date"><span class="inner-date"><%= i.updated_at.strftime('%e %b, %Y') %></span></p>
 
         <p class="incident-name"><%= i.name %></p>
         <% all_events(i).each do |e| %>
