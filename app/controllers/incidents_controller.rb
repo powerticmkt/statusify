@@ -31,6 +31,7 @@ class IncidentsController < ApplicationController
     @incident.name = incident_params[:name]
     @incident.component = incident_params[:component]
     @event = @incident.events.build(message: incident_params[:event][:message], status: incident_params[:event][:status])
+    @event ||= @incident.events.build
     if @incident.save && @event.save
       response.headers['status'] = 'success'
       flash[:success] = 'Updated incident successfully.'

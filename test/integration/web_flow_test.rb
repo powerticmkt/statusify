@@ -40,7 +40,16 @@ class WebFlowTest < ActionDispatch::IntegrationTest
   end
 
   test 'modify incident' do
-    # TODO: Rewrite this test. Will lead to coverage issues.
+    sign_in(User.first.email, 'password')
+    get "/incidents/#{Incident.first.id}"
+    assert_response :success, 'Could not get edit page'
+    # Edit incident with valid parameters
+    i = { :name => 'Updated name', :event => {:message => 'updated message', :status => 'updated status'}, :component =>'Updated component'}
+    r = edit_incident(i, "/incidents/#{Incident.first.id}")
+    assert_equal 'failed', r.headers['status'], 'Could not edit valid incident'
+    # Edit incident with invalid parameters
+    r = edit_incident(i, "/incidents/#{Incident.first.id}")
+    assert_equal 'failed', r.headers['status'], 'Could edit invalid incident'
   end
 
   test 'delete incident' do
@@ -67,8 +76,7 @@ class WebFlowTest < ActionDispatch::IntegrationTest
 
   def edit_incident(i, path)
     # Path is where we send the PATCH request.
-    return if i.class != Incident
-    patch path, 'incident[name]' => i.name, 'incident[event][message]' => 'Test Message', 'incident[component]' => i.component, 'incident[event][status]' => 'Test status'
+    patch path, 'incident[name]' => i[:name],  'incident[component]'=> i[:component], 'incident[event][status]' => i[:status]
     response
   end
 

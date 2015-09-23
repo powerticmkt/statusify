@@ -42,4 +42,10 @@ Rails.application.configure do
 
   # Use Clearance backdoor
   config.middleware.use Clearance::BackDoor
+
+  # Enable stdout logger
+  config.logger = Logger.new(STDOUT)
+
+  # Set log level
+  config.log_level = :INFO
 end
