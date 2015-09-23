@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   patch 'incidents/:id' => 'incidents#update'
   delete 'incidents/:id' => 'incidents#delete'
   get 'incidents/delete/:id' => 'incidents#delete'
-  get 'signout' =>  'clearance/sessions#destroy'
+  get 'signout' => 'clearance/sessions#destroy'
 end

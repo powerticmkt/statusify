@@ -1,0 +1,9 @@
+one:
+  message: MyString
+  status: MyString
+  incident: incident_two
+
+two:
+  message: MyString
+  status: MyString
+  incident: incident_one

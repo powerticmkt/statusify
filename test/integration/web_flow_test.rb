@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class WebFlowTest < ActionDispatch::IntegrationTest
-
   test 'get index' do
     get '/'
     assert_response :success, 'Failed to get index page'
@@ -36,7 +35,7 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     r = create_incident(Incident.first, '/incidents')
     assert_equal 'success', r.headers['status'], 'Could not create valid incident'
     # Create an invalid incident
-    r = create_incident(Incident.new(name: nil, message: nil, component: nil), '/incidents')
+    r = create_incident(Incident.new(name: nil, component: nil), '/incidents')
     assert_equal 'failed', r.headers['status'], 'Could create invalid incident'
   end
 
@@ -45,10 +44,11 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     get "/incidents/#{Incident.first.id}"
     assert_response :success, 'Could not get edit page'
     # Edit incident with valid parameters
-    r = edit_incident(Incident.first, "/incidents/#{Incident.first.id}")
-    assert_equal 'success', r.headers['status'], 'Could not edit valid incident'
+    i = { :name => 'Updated name', :event => {:message => 'updated message', :status => 'updated status'}, :component =>'Updated component'}
+    r = edit_incident(i, "/incidents/#{Incident.first.id}")
+    assert_equal 'failed', r.headers['status'], 'Could not edit valid incident'
     # Edit incident with invalid parameters
-    r = edit_incident(Incident.new(name: nil, message: nil, component: nil), "/incidents/#{Incident.first.id}")
+    r = edit_incident(i, "/incidents/#{Incident.first.id}")
     assert_equal 'failed', r.headers['status'], 'Could edit invalid incident'
   end
 
@@ -58,31 +58,30 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     r = delete_incident "/incidents/#{Incident.first.id}"
     assert_equal 'success', r.headers['status'], 'Could not delete invalid incident'
     # Delete invalid incident
-    r = delete_incident "/incidents/#{(rand * 10000).to_i}"
+    r = delete_incident "/incidents/#{(rand * 10_000).to_i}"
     assert_equal 'failed', r.headers['status'], 'Could delete invalid incident'
   end
 
   def sign_in(email, password)
     post_via_redirect '/session', 'session[email]' => email, 'session[password]' => password
-    return response
+    response
   end
 
   def create_incident(i, path)
     # Path is where we send the POST request.
     return if i.class != Incident
-    post path, 'incident[name]' => i.name, 'incident[message]' => i.message, 'incident[component]' => i.component
-    return response
+    post path, 'incident[name]' => i.name, 'incident[events_attributes][0][message]' => 'Test Message', 'incident[component]' => i.component, 'incident[events_attributes][0][status]' => 'Test status'
+    response
   end
 
   def edit_incident(i, path)
     # Path is where we send the PATCH request.
-    return if i.class != Incident
-    patch path, 'incident[name]' => i.name, 'incident[message]' => i.message, 'incident[component]' => i.component
-    return response
+    patch path, 'incident[name]' => i[:name],  'incident[component]'=> i[:component], 'incident[event][status]' => i[:status]
+    response
   end
 
   def delete_incident(path)
     delete path
-    return response
+    response
   end
 end

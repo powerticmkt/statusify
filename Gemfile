@@ -35,10 +35,10 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'clearance'
 
 group :production do
-# Rails-12factor
+  # Rails-12factor
   gem 'rails_12factor'
-# Use Puma as the app server
-	gem 'puma'
+  # Use Puma as the app server
+  gem 'puma'
 end
 
 # Coveralls, code coverage
@@ -54,4 +54,3 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
