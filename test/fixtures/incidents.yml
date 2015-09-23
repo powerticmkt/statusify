@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+incident_one:
   name: 'Incident name'
   component: 'API'
   status: 'Down'
   public: true
   active: true
 
-two:
+incident_two:
   name: 'Other incident name'
   component: 'Web App'
   status: 'Investigating'

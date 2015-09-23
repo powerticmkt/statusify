@@ -1,9 +1,9 @@
 one:
   message: MyString
   status: MyString
-  incident_id: 1
+  incident: incident_two
 
 two:
   message: MyString
   status: MyString
-  incident_id: 2
+  incident: incident_one
