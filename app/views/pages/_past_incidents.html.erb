@@ -1,12 +1,11 @@
-<div class="timeline">
-  <div class="col-sm-2"></div>
-  <div class="col-sm-8">
-    <% all_incidents.each do |i| %>
+<% if inactive_incidents.any? %><h2 class="text-center">Past Incidents</h2><% end %>
+<div>
+    <% inactive_incidents.each do |i| %>
         <p class="incident-date"><span class="inner-date"><%= i.updated_at.strftime('%e %b, %Y') %></span></p>
 
         <p class="incident-name"><%= i.name %></p>
         <% all_events(i).each do |e| %>
-            <hr/>
+            <hr class="event-hr"/>
             <p class="incident-description"><b><%= e.status %></b>- &nbsp;<%= e.message %></p>
 
             <p class="incident-updated-at"><%= e.updated_at.strftime('%b %e, %H:%M %Z') %></p>
@@ -14,14 +13,12 @@
 
         <% if signed_in? %>
             <a href="/incidents/<%= i.id %>">
-              <button class="btn btn-warning">Update Incident</button>
+              <button class="btn btn-warning btn-sm">Update Incident</button>
             </a>
             <a href="/incidents/delete/<%= i.id %>" data-confirm="Are you sure? Deleting an incident is irreversible.">
-              <button class="btn btn-danger">Delete Incident</button>
+              <button class="btn btn-danger btn-sm">Delete Incident</button>
             </a>
         <% end %>
 
     <% end %>
   </div>
-  <div class="col-sm-2"></div>
-</div>

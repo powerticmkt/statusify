@@ -1,0 +1,23 @@
+<% if active_incidents.any? %><h2 class="text-center">Current Incident</h2><%end%>
+  <div>
+    <% active_incidents.each do |i| %>
+        <p class="incident-date"><span class="inner-date"><%= i.updated_at.strftime('%e %b, %Y') %></span></p>
+
+        <p class="incident-name"><%= i.name %> <a href="/incidents/deactivate/<%= i.id %>"><button class="btn btn-success deactivate-button btn-xs">Deactivate incident</button></a></p>
+        <% all_events(i).each do |e| %>
+            <hr class="event-hr"/>
+            <p class="incident-description"><b><%= e.status %></b>- &nbsp;<%= e.message %></p>
+
+            <p class="incident-updated-at"><%= e.updated_at.strftime('%b %e, %H:%M %Z') %></p>
+        <% end %>
+
+        <% if signed_in? %>
+            <a href="/incidents/<%= i.id %>">
+              <button class="btn btn-warning btn-sm">Update Incident</button>
+            </a>
+            <a href="/incidents/delete/<%= i.id %>" data-confirm="Are you sure? Deleting an incident is irreversible.">
+              <button class="btn btn-danger btn-sm">Delete Incident</button>
+            </a>
+        <% end %>
+    <% end %>
+  </div>

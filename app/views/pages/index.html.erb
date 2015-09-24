@@ -6,8 +6,15 @@
     <div class="alert alert-danger" id="status-summary">Some systems down!</div>
   <% end %>
 
-  <h2 align="center">Past Incidents</h2>
-  <div id="recent-incidents">
-    <%= render :partial => 'pages/incidents' %>
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8" id="incidents">
+  <div id="current_incidents">
+    <%= render :partial => 'pages/current_incidents' %>
   </div>
+  <div id="recent-incidents">
+    <%= render :partial => 'pages/past_incidents' %>
+  </div>
+  </div>
+
 </div>
+<div class="col-sm-2"></div>

@@ -44,7 +44,6 @@ class IncidentsController < ApplicationController
   end
 
   def delete
-    # TODO: Warn the user
     i = Incident.find_by_id(params[:id])
     if !!i
       response.headers['status'] = 'success'
@@ -55,6 +54,16 @@ class IncidentsController < ApplicationController
       flash[:danger] = 'Failed to delete incident.'
     end
     redirect_to root_url
+  end
+
+  def deactivate
+    @incident = Incident.find_by_id(params[:id])
+    if !!@incident
+      @incident.active = false
+      @incident.save
+      flash[:success] = 'Deactivated incident successfully.'
+    end
+    redirect_to root_path
   end
 
   private

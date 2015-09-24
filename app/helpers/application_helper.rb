@@ -1,14 +1,35 @@
 module ApplicationHelper
-  def active_incidents
-    @active_incidents ||= Incident.all.select { |m| m.active == true }
-  end
 
   def all_incidents
+    Incident.all.order('updated_at DESC')
+  end
+
+  def visible_incidents
+    @visible_incidents = []
     if signed_in?
-      @all_incidents ||= Incident.all.order('updated_at DESC')
+      @visible_incidents = all_incidents.to_a
     else
-      @all_incidents ||= Incident.all.order('updated_at DESC').select { |i| i.public == true }
+      all_incidents.each do |i|
+        @visible_incidents << i if i.public == true
+      end
     end
+    @visible_incidents
+  end
+
+  def active_incidents
+    @active_incidents = []
+    visible_incidents.each do |i|
+      @active_incidents << i if i.active == true
+    end
+    @active_incidents
+  end
+
+  def inactive_incidents
+    @inactive_incidents = []
+    visible_incidents.each do |i|
+      @inactive_incidents << i if i.active != true
+    end
+    @inactive_incidents
   end
 
   def last_event(incident)
@@ -20,5 +41,6 @@ module ApplicationHelper
   def all_events(incident)
     return if incident.class != Incident
     all_events = incident.events.order('updated_at DESC')
+    all_events
   end
 end

@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   delete 'incidents/:id' => 'incidents#delete'
   get 'incidents/delete/:id' => 'incidents#delete'
   get 'signout' => 'clearance/sessions#destroy'
+  get 'incidents/deactivate/:id' => 'incidents#deactivate'
 end
