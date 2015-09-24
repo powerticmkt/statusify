@@ -3,7 +3,7 @@
     <% active_incidents.each do |i| %>
         <p class="incident-date"><span class="inner-date"><%= i.updated_at.strftime('%e %b, %Y') %></span></p>
 
-        <p class="incident-name"><%= i.name %> <a href="/incidents/deactivate/<%= i.id %>"><button class="btn btn-success deactivate-button btn-xs">Deactivate incident</button></a></p>
+        <p class="incident-name"><%= i.name %> <% if signed_in? %><a href="/incidents/deactivate/<%= i.id %>"><button class="btn btn-success deactivate-button btn-xs">Deactivate incident</button></a><% end %></p>
         <% all_events(i).each do |e| %>
             <hr class="event-hr"/>
             <p class="incident-description"><b><%= e.status %></b>- &nbsp;<%= e.message %></p>
