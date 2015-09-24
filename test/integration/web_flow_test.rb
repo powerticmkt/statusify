@@ -44,7 +44,7 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     get "/incidents/#{Incident.first.id}"
     assert_response :success, 'Could not get edit page'
     # Edit incident with valid parameters
-    i = { :name => 'Updated name', :event => {:message => 'updated message', :status => 'updated status'}, :component =>'Updated component'}
+    i = { name: 'Updated name', event: { message: 'updated message', status: 'updated status' }, component: 'Updated component' }
     r = edit_incident(i, "/incidents/#{Incident.first.id}")
     assert_equal 'failed', r.headers['status'], 'Could not edit valid incident'
     # Edit incident with invalid parameters
@@ -76,7 +76,7 @@ class WebFlowTest < ActionDispatch::IntegrationTest
 
   def edit_incident(i, path)
     # Path is where we send the PATCH request.
-    patch path, 'incident[name]' => i[:name],  'incident[component]'=> i[:component], 'incident[event][status]' => i[:status]
+    patch path, 'incident[name]' => i[:name], 'incident[component]' => i[:component], 'incident[event][status]' => i[:status]
     response
   end
 

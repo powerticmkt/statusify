@@ -30,9 +30,9 @@ class IncidentsController < ApplicationController
     @incident = Incident.find_by_id(params[:id])
     @incident.name = incident_params[:name]
     @incident.component = incident_params[:component]
-    @event = @incident.events.build(message: incident_params[:event][:message], status: incident_params[:event][:status])
-    @event ||= @incident.events.build
-    if @incident.save && @event.save
+    event_params = { message: incident_params[:event][:message], status: incident_params[:event][:status] }
+    @event = @incident.events.build(event_params)
+    if @incident.save || @event.save
       response.headers['status'] = 'success'
       flash[:success] = 'Updated incident successfully.'
       redirect_to root_path
