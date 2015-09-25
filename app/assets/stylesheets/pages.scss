@@ -1,6 +1,12 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.incident-description > b:nth-child(1) {
+  font-size: 1.75rem;
+  margin-right: 1rem;
+}
+
 .incident-name {
   font-weight: 500;
   font-size: 3rem;
@@ -8,19 +14,12 @@
   color: #E74C3C;
 }
 
-.incident-description > b:nth-child(1) {
-  font-size: 1.75rem;
-  margin-right: 1rem;
-}
-
 .incident-updated-at {
   font-size: 1.25rem;
   font-weight: lighter;
-  color: rgba(255, 255, 255, 0.46);
 }
 
 .incident-date {
-  background-color: rgba(224, 224, 224, 0.23);
   border: 6px;
   border-radius: 6px;
 }
@@ -34,13 +33,8 @@
   float: top;
 }
 
-.incident-date {
-  margin-top: 3rem;
-}
-
 .event-hr {
   width: 75%;
-  border-color: rgba(255, 255, 255, 0.38) !important;
   margin-top: 1rem;
   margin-bottom: 1rem;
   text-align: center;

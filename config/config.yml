@@ -1,8 +1,11 @@
 development:
   name: Statusify
+  theme: light
 
 test:
   name: Statusify
+  theme: light
 
 production:
   name: Statusify
+  theme: light

@@ -1,0 +1,20 @@
+/* These are the base styles, common across all themes. */
+#header-status {
+  font-weight: bold;
+}
+
+#status-summary {
+  width: 50%;
+  text-align: center;
+  margin-left: 25%;
+  margin-right: 50%;
+  margin-top: 10px;
+}
+
+.up {
+  color: #50DE53;
+}
+
+.down {
+  color: #B00100;
+}
