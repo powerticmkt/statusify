@@ -30,9 +30,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Faraday HTTP Cache
-gem 'faraday-http-cache'
-
 # Bootstrap framework
 gem 'bootstrap-sass', '~> 3.3.5'
 
