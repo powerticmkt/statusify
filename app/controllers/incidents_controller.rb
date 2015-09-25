@@ -58,7 +58,7 @@ class IncidentsController < ApplicationController
 
   def deactivate
     @incident = Incident.find_by_id(params[:id])
-    if !!@incident
+    if @incident
       @incident.active = false
       @incident.save
       flash[:success] = 'Deactivated incident successfully.'

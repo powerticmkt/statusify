@@ -1,0 +1,47 @@
+/* Add all light-theme styles here. */
+
+body {
+  background-color: #ecf0f1;
+
+  a {
+    text-decoration: none !important;
+  }
+
+  #navigation-1 {
+    .navbar-header {
+      .navbar-toggle {
+        border-color: black;
+        .icon-bar {
+          background-color: black;
+        }
+      }
+      .navbar-toggle:focus, .navbar-toggle:hover {
+        background-color: lightgray;
+      }
+    }
+  }
+  .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+    background-color: rgba(255, 255, 255, 0.67);
+    color: black !important;
+  }
+
+  .incident-block {
+    background-color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.75rem;
+    vertical-align: baseline;
+    .incident-date {
+      background-color: rgba(211, 211, 211, 0.38);
+    }
+    .incident-component {
+      text-align: right;
+      font-weight: lighter;
+      float: right;
+      margin-right: 0.5rem;
+    }
+    .event-hr {
+      border-color: rgba(0, 0, 0, 0.2);
+    }
+  }
+}

@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def all_incidents
     Incident.all.order('updated_at DESC')
   end
