@@ -1,10 +1,10 @@
 development:
   name: Statusify
-  theme: <%= ENV['STATUSIFY_THEME' || 'light' %>
+  theme: <%= ENV['STATUSIFY_THEME'] || 'light' %>
 
 test:
   name: Statusify
-  theme: <%= ENV['STATUSIFY_THEME' || 'light' %>
+  theme: <%= ENV['STATUSIFY_THEME'] || 'light' %>
 
 production:
   name: Statusify
