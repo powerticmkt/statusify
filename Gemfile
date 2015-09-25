@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+# Custom Ruby version, CI checks remain unaffected.
+if ENV['CUSTOM_RUBY_VERSION']
+  ruby ENV['CUSTOM_RUBY_VERSION']
+end
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use postgresql as the database for Active Record
