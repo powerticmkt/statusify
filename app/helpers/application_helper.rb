@@ -31,15 +31,16 @@ module ApplicationHelper
     @inactive_incidents
   end
 
+  def all_events(incident)
+    return unless incident.is_a? Incident
+    all_events ||= incident.events.order('updated_at DESC')
+    all_events
+  end
+
   def last_event(incident)
-    return if incident.class != Incident
-    last_event = incident.events.order('updated_at DESC').first
+    return unless incident.is_a? Incident
+    last_event ||= all_events(incident).first
     last_event
   end
 
-  def all_events(incident)
-    return if incident.class != Incident
-    all_events = incident.events.order('updated_at DESC')
-    all_events
-  end
 end

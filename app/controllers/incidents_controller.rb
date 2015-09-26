@@ -46,7 +46,7 @@ class IncidentsController < ApplicationController
 
   def delete
     i = Incident.find_by_id(params[:id])
-    if !!i
+    if i
       response.headers['status'] = 'success'
       i.delete
       flash[:success] = 'Incident deleted successfully.'
