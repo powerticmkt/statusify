@@ -1,4 +1,5 @@
 class IncidentsController < ApplicationController
+  skip_before_filter :verify_authenticity_token if ENV['STRESS-TEST']
   before_action :require_login
 
   def new
