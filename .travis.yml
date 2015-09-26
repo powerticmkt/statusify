@@ -10,3 +10,4 @@ before_script:
 matrix:
   allow_failures:
     - rvm: 2.1  
+bundler_args: --without production

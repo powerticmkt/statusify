@@ -41,6 +41,8 @@ group :production do
   gem 'rails_12factor'
   # Use Puma as the app server
   gem 'puma'
+  # Skylight, metrics.
+  gem "skylight"
 end
 
 # Coveralls, code coverage
