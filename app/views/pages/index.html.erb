@@ -1,20 +1,24 @@
 <div class="status_page">
 
   <% if active_incidents.blank? %>
-    <div class="alert alert-success" id="status-summary">All systems up!</div>
+      <div class="alert alert-success" id="status-summary">All systems up!</div>
   <% else %>
-    <div class="alert alert-danger" id="status-summary">Some systems down!</div>
+      <div class="alert alert-danger" id="status-summary">Some systems down!</div>
   <% end %>
 
   <div class="col-sm-2"></div>
   <div class="col-sm-8" id="incidents">
-  <div id="current-incidents">
-    <%= render :partial => 'pages/current_incidents' %>
-  </div>
-  <div id="recent-incidents">
-    <%= render :partial => 'pages/past_incidents' %>
-  </div>
-  </div>
+    <div id="current-incidents">
+    <% if active_incidents.any? %>
+         <%= render :partial => 'pages/current_incidents' %>
+    <% end %>
+    </div>
+  <% if inactive_incidents.any? %>
+      <div id="recent-incidents">
+        <%= render :partial => 'pages/past_incidents' %>
+      </div>
+  <% end %>
+</div>
 
 </div>
 <div class="col-sm-2"></div>

@@ -6,6 +6,8 @@
 		<br />
     <%= f.text_field :component, input_html: {value: @incident.component}, :class => 'form-control'%>
     <br />
+    <%= f.label(:severity, 'Incident severity:') %>
+    <%= f.select :severity, options_for_select([%w[Major major], %w[Minor minor]], selected = @incident.severity) %>
     <%= f.fields_for :event do |ff| %>
         <%= ff.text_area :message, value: @event.message, :class => 'form-control' %>
         <%= ff.text_field :status, value: @event.status, :class => 'form-control' %>

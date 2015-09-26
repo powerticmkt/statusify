@@ -6,6 +6,8 @@
     <br />
     <%= f.text_field :component, placeholder: 'Components affected', :class => 'form-control' %>
     <br />
+    <%= f.label(:severity, 'Incident severity:') %>
+    <%= f.select :severity, options_for_select([['Major', 'major'], ['Minor', 'minor']]) %>
     <%= f.fields_for :events do |ff| %>
     <%= ff.text_area :message, placeholder: 'Message to users', :class => 'form-control' %>
     <%= ff.text_field :status, placeholder: 'Current status', class: 'form-control' %>
