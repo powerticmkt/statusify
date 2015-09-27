@@ -1,15 +1,14 @@
-<% if active_incidents.any? %><h2 class="text-center">Current Incident</h2>
-<% end %>
+<h2 class="text-center">Current Incident</h2>
 <% active_incidents.each do |i| %>
     <div class="incident-block">
       <p class="incident-date"><span class="inner-date"><%= i.updated_at.strftime('%e %b, %Y') %></span></p>
 
-      <span class="incident-name"><%= i.name %>
+      <span class="incident-name text-<%= i.convert_to_level %>"><%= i.name %>
         <% if signed_in? %><a href="/incidents/deactivate/<%= i.id %>">
         <button class="btn btn-success deactivate-button btn-xs">Deactivate incident</button>
       </a>
         <% end %></span>
-      <span class="incident-component text-danger"><%= i.component %></span>
+      <span class="incident-component text-<%= i.convert_to_level %>"><%= i.component %></span>
       <% all_events(i).each do |e| %>
           <hr class="event-hr"/>
           <p class="incident-description"><b><%= e.status %></b>- &nbsp;<%= e.message %></p>
