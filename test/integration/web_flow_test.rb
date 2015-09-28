@@ -44,10 +44,11 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     get "/incidents/#{Incident.first.id}"
     assert_response :success, 'Could not get edit page'
     # Edit incident with valid parameters
-    i = { name: 'Updated name', event: { message: 'updated message', status: 'updated status' }, component: 'Updated component' }
+    i = { name: 'Updated name', message: 'updated message', status: 'updated status', component: 'Updated component', severity: 'major' }
     r = edit_incident(i, "/incidents/#{Incident.first.id}")
-    assert_equal 'failed', r.headers['status'], 'Could not edit valid incident'
+    assert_equal 'success', r.headers['status'], 'Could not edit valid incident'
     # Edit incident with invalid parameters
+    i = { name: '', message: '', status: '', component: '', severity: '' }
     r = edit_incident(i, "/incidents/#{Incident.first.id}")
     assert_equal 'failed', r.headers['status'], 'Could edit invalid incident'
   end
@@ -70,13 +71,13 @@ class WebFlowTest < ActionDispatch::IntegrationTest
   def create_incident(i, path)
     # Path is where we send the POST request.
     return if i.class != Incident
-    post path, 'incident[name]' => i.name, 'incident[events_attributes][0][message]' => 'Test Message', 'incident[component]' => i.component, 'incident[events_attributes][0][status]' => 'Test status'
+    post path, 'incident[name]' => i.name, 'incident[events_attributes][0][message]' => 'Test Message', 'incident[component]' => i.component, 'incident[events_attributes][0][status]' => 'Test status', 'incident[severity]' => i.severity
     response
   end
 
   def edit_incident(i, path)
     # Path is where we send the PATCH request.
-    patch path, 'incident[name]' => i[:name], 'incident[component]' => i[:component], 'incident[event][status]' => i[:status]
+    patch path, 'incident[name]' => i[:name], 'incident[event][message]' => i[:message], 'incident[event][status]' => i[:status], 'incident[severity]' => i[:severity]
     response
   end
 

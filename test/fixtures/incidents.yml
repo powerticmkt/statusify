@@ -6,6 +6,7 @@ incident_one:
   status: 'Down'
   public: true
   active: true
+  severity: major
 
 incident_two:
   name: 'Other incident name'
@@ -13,3 +14,4 @@ incident_two:
   status: 'Investigating'
   public: false
   active: true
+  severity: minor
