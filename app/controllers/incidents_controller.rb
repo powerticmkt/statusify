@@ -67,7 +67,7 @@ class IncidentsController < ApplicationController
     end
     redirect_to root_path
   end
-
+  
   private
 
   def incident_params
