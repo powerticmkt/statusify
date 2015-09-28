@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def all_incidents
     Incident.all.order('updated_at DESC')
   end
@@ -41,6 +42,33 @@ module ApplicationHelper
     return unless incident.is_a? Incident
     last_event ||= all_events(incident).first
     last_event
+  end
+
+  def dated_incidents
+    # Returns a hash containing dates and the incidents that happened on that date
+    # Sample output
+    # {Sat, 26 Sep 2015=>#<ActiveRecord::Relation [#<Incident id: 980190979, name: "Incident Name", component: "Incident...>>}
+    # Says 'nothing to report' if there are no incidents on that day
+    # This is a bit heavy, especially if Statusify has been around for some time.
+    begins = Incident.first.created_at.to_date
+    ends = Incident.last.updated_at.to_date
+    # Minor check to make sure things don't blow up
+    begins,ends = ends,begins if begins > ends
+    # The range over which we operate
+    range = begins..ends
+    # Runs only if @dated_incidents == nil
+    if !@dated_incidents
+      @dated_incidents = Hash.new
+      range.each do |date|
+        i = Incident.where(:created_at => date.beginning_of_day..date.end_of_day)
+        if !i.empty?
+          @dated_incidents[date] = i
+        else
+          @dated_incidents[date] = 'Nothing to report'
+        end
+      end
+    end
+    @dated_incidents.sort{|a,b| b <=> a}.to_h
   end
 
 end

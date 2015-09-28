@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get 'incidents/delete/:id' => 'incidents#delete'
   get 'signout' => 'clearance/sessions#destroy'
   get 'incidents/deactivate/:id' => 'incidents#deactivate'
+  get 'history' => 'pages#history'
 end

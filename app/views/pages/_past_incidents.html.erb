@@ -1,5 +1,5 @@
 <% if inactive_incidents.any? %><h2 class="text-center">Past Incidents</h2><% end %>
-<% inactive_incidents.each do |i| %>
+<% inactive_incidents.first(5).each do |i| %>
     <div class="incident-block">
       <p class="incident-date"><span class="inner-date"><%= i.updated_at.strftime('%e %b, %Y') %></span></p>
       <span class="incident-name text-<%= i.convert_to_level %>"><%= i.name %></span><span class="incident-component text-<%= i.convert_to_level %>"><%= i.component %></span>
