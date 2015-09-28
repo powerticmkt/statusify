@@ -39,6 +39,9 @@ gem 'clearance'
 # Kaminari, for pagination
 gem 'kaminari'
 
+# Turbolinks JS fixes
+gem 'jquery-turbolinks'
+
 group :production do
   # Rails-12factor
   gem 'rails_12factor'
