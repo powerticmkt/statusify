@@ -25,9 +25,4 @@ class Incident < ActiveRecord::Base
     end
   end
 
-  private
-
-  def incident_params
-    params.require(:incident).permit(:name, :status, :user_id, :message)
-  end
 end
