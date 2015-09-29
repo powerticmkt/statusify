@@ -68,7 +68,7 @@ module ApplicationHelper
         end
       end
     end
-    @dated_incidents.sort{|a,b| b <=> a}.to_h
+    Hash[@dated_incidents.sort{|a,b| b <=> a}.to_h]
   end
 
 end
