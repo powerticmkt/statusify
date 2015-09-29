@@ -48,12 +48,12 @@ group :production do
   # Use Puma as the app server
   gem 'puma'
   # Skylight, metrics.
-  gem 'skylight'
+  gem 'skylight', platforms: :mri
 end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'byebug', platforms: :mri
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
