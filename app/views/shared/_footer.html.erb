@@ -1,3 +1,6 @@
 <footer>
-  <%= link_to '< View previous incidents', history_path%>
+  <% unless request.fullpath == '/history' %>
+      <%= link_to '< View previous incidents', history_path %>
+  <% end %>
+  <div id="poweredby">Proudly powered by <a href="https://github.com/ur0/statusify">Statusify.</a></div>
 </footer>
