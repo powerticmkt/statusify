@@ -10,7 +10,7 @@ module ApplicationHelper
       @visible_incidents = all_incidents.to_a
     else
       all_incidents.each do |i|
-        @visible_incidents << i if i.public == true
+        @visible_incidents << i if i.public
       end
     end
     @visible_incidents
@@ -19,7 +19,7 @@ module ApplicationHelper
   def active_incidents
     @active_incidents = []
     visible_incidents.each do |i|
-      @active_incidents << i if i.active == true
+      @active_incidents << i if i.active
     end
     @active_incidents
   end
@@ -27,7 +27,7 @@ module ApplicationHelper
   def inactive_incidents
     @inactive_incidents = []
     visible_incidents.each do |i|
-      @inactive_incidents << i if i.active != true
+      @inactive_incidents << i unless i.active
     end
     @inactive_incidents
   end
@@ -35,13 +35,11 @@ module ApplicationHelper
   def all_events(incident)
     return unless incident.is_a? Incident
     all_events ||= incident.events.order('updated_at DESC')
-    all_events
   end
 
   def last_event(incident)
     return unless incident.is_a? Incident
     last_event ||= all_events(incident).first
-    last_event
   end
 
   def dated_incidents
@@ -57,7 +55,7 @@ module ApplicationHelper
     # The range over which we operate
     range = begins..ends
     # Runs only if @dated_incidents == nil
-    if !@dated_incidents
+    unless @dated_incidents
       @dated_incidents = Hash.new
       range.each do |date|
         i = Incident.where(:created_at => date.beginning_of_day..date.end_of_day)
