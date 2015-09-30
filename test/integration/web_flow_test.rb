@@ -63,6 +63,13 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     assert_equal 'failed', r.headers['status'], 'Could delete invalid incident'
   end
 
+  test 'deactivate incident' do
+    sign_in(User.first.email, 'password')
+    # Deactivate valid incident
+    r = get "/incidents/deactivate/#{Incident.first(2).last.id}"
+    assert_equal 'success', response.headers['status'], 'Unable to deactivate valid incident'
+  end
+
   def sign_in(email, password)
     post_via_redirect '/session', 'session[email]' => email, 'session[password]' => password
     response

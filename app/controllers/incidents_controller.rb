@@ -68,6 +68,7 @@ class IncidentsController < ApplicationController
       @incident.active = false
       @incident.save
       flash[:success] = 'Deactivated incident successfully.'
+      response.headers['status'] = 'success'
     end
     redirect_to root_path
   end
