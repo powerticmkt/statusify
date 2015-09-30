@@ -67,7 +67,6 @@ module ApplicationHelper
       end
       @dated_incidents.sort { |a, b| b <=> a }.to_h
     end
-    Rails.cache.fetch('dated_incidents')
   end
 
 end
