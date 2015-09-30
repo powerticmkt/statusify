@@ -42,20 +42,20 @@ module ApplicationHelper
     last_event ||= all_events(incident).first
   end
 
-  def dated_incidents
+  def dated_incidents(force = false)
     # Returns a hash containing dates and the incidents that happened on that date
     # Sample output
     # {Sat, 26 Sep 2015=>#<ActiveRecord::Relation [#<Incident id: 980190979, name: "Incident Name", component: "Incident...>>}
     # Says 'nothing to report' if there are no incidents on that day
     # This is a bit heavy, especially if Statusify has been around for some time.
-    begins = Incident.first.created_at.to_date
-    ends = Incident.last.updated_at.to_date
-    # Minor check to make sure things don't blow up
-    begins,ends = ends,begins if begins > ends
-    # The range over which we operate
-    range = begins..ends
-    # Runs only if @dated_incidents == nil
-    unless @dated_incidents
+    # Pass true to force reset cache.
+    Rails.cache.fetch('dated_incidents', force: force) do
+      begins = Incident.first.created_at.to_date
+      ends = Incident.last.updated_at.to_date
+      # Minor check to make sure things don't blow up
+      begins, ends = ends, begins if begins > ends
+      # The range over which we operate
+      range = begins..ends
       @dated_incidents = Hash.new
       range.each do |date|
         i = Incident.where(:created_at => date.beginning_of_day..date.end_of_day)
@@ -65,8 +65,9 @@ module ApplicationHelper
           @dated_incidents[date] = 'Nothing to report'
         end
       end
+      @dated_incidents.sort { |a, b| b <=> a }.to_h
     end
-    @dated_incidents.sort{|a,b| b <=> a}.to_h
+    Rails.cache.fetch('dated_incidents')
   end
 
 end
