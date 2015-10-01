@@ -23,6 +23,6 @@ jQuery(document).ready(function(){
     });
 });
 
-if (!document.cookie.indexOf('remeber_token') >= 0) {
+if (!document.cookie.indexOf('remember_token') >= 0) {
     $('.admin-button').hide();
 }
