@@ -2,7 +2,7 @@
     <div class="incident-group-date"><%= date.strftime('%e %B %Y') %></div>
     <% if incidents.is_a? ActiveRecord::Relation %>
         <% incidents.each do |i| %>
-            <% cache(i) do %>
+            <% cache_if(!signed_in?, i) do %>
                 <div class="incident-block">
                   <span class="incident-name text-<%= i.convert_to_level %>"><%= i.name %></span><span class="incident-component text-<%= i.convert_to_level %>"><%= i.component %></span>
                   <% e = i.events.last %>

@@ -1,6 +1,6 @@
 <h2 class="text-center">Current Incident</h2>
 <% active_incidents.each do |i| %>
-    <% cache(i) do %>
+    <% cache_if(!signed_in?, i) do %>
         <div class="incident-block">
           <p class="incident-date"><span class="inner-date"><%= i.updated_at.strftime('%e %b, %Y') %></span></p>
 
