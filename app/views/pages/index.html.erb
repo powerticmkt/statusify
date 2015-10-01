@@ -1,4 +1,4 @@
-<div class="status_page">
+<div class="container status-page">
 
   <% if active_incidents.blank? %>
       <div class="alert alert-success" id="status-summary">All systems up!</div>
@@ -8,14 +8,14 @@
 
   <div class="col-sm-2"></div>
   <div class="col-sm-8" id="incidents">
-    <div id="current-incidents">
+    <div id="active-incidents">
     <% if active_incidents.any? %>
-         <%= render :partial => 'pages/current_incidents' %>
+         <%= render :partial => 'pages/incidents', locals: {active: true, incidents: active_incidents} %>
     <% end %>
     </div>
   <% if inactive_incidents.any? %>
-      <div id="recent-incidents">
-        <%= render :partial => 'pages/past_incidents' %>
+      <div id="inactive-incidents">
+        <%= render :partial => 'pages/incidents', locals: {active: false, incidents: inactive_incidents} %>
       </div>
   <% end %>
 </div>

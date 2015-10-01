@@ -1,10 +1,23 @@
-<% if inactive_incidents.any? %><h2 class="text-center">Past Incidents</h2>
-<% end %>
-<% inactive_incidents.first(5).each do |i| %>
+<h2 class="text-center"><%= active ? 'Current' : 'Past' %> <%= 'incident'.pluralize(incidents.length) %></h2>
+
+<%#	The number of incidents we're showing. %>
+<%# 1073741823 is the biggest Fixnum we have. %>
+<% count = active ? 1073741823 : 5 %>
+
+<% incidents.first(count).each do |i| %>
     <% cache_if(!signed_in?, i) do %>
         <div class="incident-block">
           <p class="incident-date"><span class="inner-date"><%= i.updated_at.strftime('%e %b, %Y') %></span></p>
-          <span class="incident-name text-<%= i.convert_to_level %>"><%= i.name %></span><span class="incident-component text-<%= i.convert_to_level %>"><%= i.component %></span>
+
+          <span class="incident-name text-<%= i.convert_to_level %>"><%= i.name %>
+
+          <% if signed_in? && active %><a href="/incidents/deactivate/<%= i.id %>">
+          <button class="btn btn-success deactivate-button btn-xs admin-button">Deactivate incident</button></a>
+          <% end %>
+          </span>
+
+          <span class="incident-component text-<%= i.convert_to_level %>"><%= i.component %></span>
+
           <% all_events(i).each do |e| %>
               <hr class="event-hr"/>
               <p class="incident-description"><b><%= e.status %></b>- &nbsp;<%= e.message %></p>
@@ -20,6 +33,7 @@
                 <button class="btn btn-danger btn-sm admin-button">Delete Incident</button>
               </a>
           <% end %>
+
         </div>
     <% end %>
 <% end %>
