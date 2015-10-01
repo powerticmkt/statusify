@@ -14,10 +14,10 @@
 
           <% if signed_in? %>
               <a href="/incidents/<%= i.id %>">
-                <button class="btn btn-warning btn-sm">Update Incident</button>
+                <button class="btn btn-warning btn-sm admin-button">Update Incident</button>
               </a>
               <a href="/incidents/delete/<%= i.id %>" data-confirm="Are you sure? Deleting an incident is irreversible.">
-                <button class="btn btn-danger btn-sm">Delete Incident</button>
+                <button class="btn btn-danger btn-sm admin-button">Delete Incident</button>
               </a>
           <% end %>
         </div>

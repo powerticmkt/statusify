@@ -22,3 +22,7 @@ jQuery(document).ready(function(){
         jQuery('.flash').toggle('show');
     });
 });
+
+if (!document.cookie.indexOf('remeber_token') >= 0) {
+    $('.admin-button').hide();
+}
