@@ -2,7 +2,7 @@
   "name":"statusify",
   "description":"Statusify is a web-application status app, written entirely in Ruby on Rails.",
   "scripts":{
-    "postdeploy":"rake db:migrate"
+    "postdeploy":"bundle exec rake db:setup"
   },
   "env":{
     "CUSTOM_RUBY_VERSION":{
