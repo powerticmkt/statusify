@@ -1,0 +1,31 @@
+{
+  "name":"statusify",
+  "description":"Statusify is a web-application status app, written entirely in Ruby on Rails.",
+  "scripts":{
+    "postdeploy":"rake db:migrate"
+  },
+  "env":{
+    "CUSTOM_RUBY_VERSION":{
+      "required":true
+    },
+    "LANG":{
+      "required":true
+    },
+    "RACK_ENV":{
+      "required":true
+    },
+    "RAILS_ENV":{
+      "required":true
+    },
+    "RAILS_SERVE_STATIC_FILES":{
+      "required":true
+    },
+    "SECRET_KEY_BASE":{
+      "required":true
+    }
+  },
+  "addons":[
+    "memcachier",
+    "heroku-postgresql"
+  ]
+}
