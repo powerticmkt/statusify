@@ -34,6 +34,7 @@ class IncidentsController < ApplicationController
     @incident.name = incident_params[:name]
     @incident.component = incident_params[:component]
     @incident.severity = incident_params[:severity]
+    @incident.public = incident_params[:public]
     event_params = { message: incident_params[:event][:message], status: incident_params[:event][:status] }
     @event = @incident.events.build(event_params)
     if @incident.save || @event.save
@@ -76,6 +77,6 @@ class IncidentsController < ApplicationController
   private
 
   def incident_params
-    params.require(:incident).permit(:name, :status, :component, :severity, events_attributes: [:status, :message], event: [:status, :message])
+    params.require(:incident).permit(:name, :status, :component, :severity, :public, events_attributes: [:status, :message], event: [:status, :message])
   end
 end

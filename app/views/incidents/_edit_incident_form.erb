@@ -12,5 +12,7 @@
         <%= ff.text_area :message, value: @event.message, :class => 'form-control' %>
         <%= ff.text_field :status, value: @event.status, :class => 'form-control' %>
     <% end %>
+    <%= f.label(:public, 'Public:') %> <%= f.check_box(:public, checked: @incident.public?) %>
+    <br />
     <%= f.submit 'Edit Incident', class: 'btn btn-primary' %>
 <% end %>

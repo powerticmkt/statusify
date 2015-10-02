@@ -12,5 +12,7 @@
     <%= ff.text_area :message, placeholder: 'Message to users', :class => 'form-control' %>
     <%= ff.text_field :status, placeholder: 'Current status', class: 'form-control' %>
     <% end %>
-    <%= f.submit 'Create Incident', class: 'btn btn-primary', :data => {disable_with: 'Creating incident...'} %>
+    <%= f.label(:public, 'Public:') %> <%= f.check_box(:public) %>
+    <br />
+    <%= f.submit 'Create Incident', class: 'btn btn-primary btn-submit', :data => {disable_with: 'Creating incident...'} %>
 <% end %>

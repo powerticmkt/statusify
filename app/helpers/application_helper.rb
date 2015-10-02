@@ -49,6 +49,7 @@ module ApplicationHelper
     # Says 'nothing to report' if there are no incidents on that day
     # This is a bit heavy, especially if Statusify has been around for some time.
     # Pass true to force reset cache.
+    # Returns only public incidents if not signed in.
     Rails.cache.fetch('dated_incidents', force: force) do
       # Don't panic if we're out of incidents
       return if Incident.count == 0
@@ -60,7 +61,7 @@ module ApplicationHelper
       range = begins..ends
       @dated_incidents = Hash.new
       range.each do |date|
-        i = Incident.where(:created_at => date.beginning_of_day..date.end_of_day)
+        i = Incident.where(:created_at => date.beginning_of_day..date.end_of_day, :public => !signed_in?)
         if !i.empty?
           @dated_incidents[date] = i
         else

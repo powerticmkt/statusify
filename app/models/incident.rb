@@ -8,7 +8,6 @@ class Incident < ActiveRecord::Base
   has_many :events, dependent: :destroy
   validates :name, presence: true, length: {maximum: 256}
   validates_presence_of :component
-  validates_presence_of :public
   validates_presence_of :user_id
   validates_presence_of :severity
   # We have to hook AR to make our Incidents/Events thing work. Tricky.
