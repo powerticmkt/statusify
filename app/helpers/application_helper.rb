@@ -46,10 +46,9 @@ module ApplicationHelper
     # Returns a hash containing dates and the incidents that happened on that date
     # Sample output
     # {Sat, 26 Sep 2015=>#<ActiveRecord::Relation [#<Incident id: 980190979, name: "Incident Name", component: "Incident...>>}
-    # Says 'nothing to report' if there are no incidents on that day
+    # Says nil if there are no incidents on that day
     # This is a bit heavy, especially if Statusify has been around for some time.
     # Pass true to force reset cache.
-    # Returns only public incidents if not signed in.
     Rails.cache.fetch('dated_incidents', force: force) do
       # Don't panic if we're out of incidents
       return if Incident.count == 0
@@ -61,11 +60,11 @@ module ApplicationHelper
       range = begins..ends
       @dated_incidents = Hash.new
       range.each do |date|
-        i = Incident.where(:created_at => date.beginning_of_day..date.end_of_day, :public => !signed_in?)
+        i = Incident.where(:created_at => date.beginning_of_day..date.end_of_day)
         if !i.empty?
           @dated_incidents[date] = i
         else
-          @dated_incidents[date] = 'Nothing to report'
+          @dated_incidents[date] = nil
         end
       end
       @dated_incidents.sort { |a, b| b <=> a }.to_h
