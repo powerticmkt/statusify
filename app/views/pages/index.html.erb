@@ -1,24 +1,23 @@
-<div class="container status-page">
+<% cache_if !signed_in?, cache_key_for_index do %>
+    <div class="container status-page">
 
-  <% if active_incidents.blank? %>
-      <div class="alert alert-success" id="status-summary">All systems up!</div>
-  <% else %>
-      <div class="alert alert-danger" id="status-summary">Some systems down!</div>
-  <% end %>
+      <% if active_incidents.blank? %>
+          <div class="alert alert-success" id="status-summary">All systems up!</div>
+      <% else %>
+          <div class="alert alert-danger" id="status-summary">Some systems down!</div>
+      <% end %>
 
-  <div class="col-sm-2"></div>
-  <div class="col-sm-8" id="incidents">
-    <div id="active-incidents">
-    <% if active_incidents.any? %>
-         <%= render :partial => 'pages/incidents', locals: {active: true, incidents: active_incidents} %>
-    <% end %>
-    </div>
-  <% if inactive_incidents.any? %>
-      <div id="inactive-incidents">
-        <%= render :partial => 'pages/incidents', locals: {active: false, incidents: inactive_incidents} %>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8" id="incidents">
+        <div id="active-incidents">
+          <%= render :partial => 'pages/incidents', locals: {active: true, incidents: active_incidents} %>
+        </div>
+        <div id="inactive-incidents">
+          <%= render :partial => 'pages/incidents', locals: {active: false, incidents: inactive_incidents} %>
+        </div>
+
       </div>
-  <% end %>
-</div>
 
-</div>
-<div class="col-sm-2"></div>
+    </div>
+    <div class="col-sm-2"></div>
+<% end %>

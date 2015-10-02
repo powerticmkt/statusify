@@ -1,4 +1,6 @@
-<h2 class="text-center"><%= active ? 'Current' : 'Past' %> <%= 'incident'.pluralize(incidents.length) %></h2>
+<% if incidents.any? %>
+    <h2 class="text-center"><%= active ? 'Current' : 'Past' %> <%= 'incident'.pluralize(incidents.length) %></h2>
+<% end %>
 
 <%#	The number of incidents we're showing. %>
 <%# 1073741823 is the biggest Fixnum we have. %>
@@ -11,8 +13,9 @@
 
           <span class="incident-name text-<%= i.convert_to_level %>"><%= i.name %>
 
-          <% if signed_in? && active %><a href="/incidents/deactivate/<%= i.id %>">
-          <button class="btn btn-success deactivate-button btn-xs admin-button">Deactivate incident</button></a>
+            <% if signed_in? && active %><a href="/incidents/deactivate/<%= i.id %>">
+            <button class="btn btn-success deactivate-button btn-xs admin-button">Deactivate incident</button>
+          </a>
           <% end %>
           </span>
 
