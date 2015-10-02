@@ -50,11 +50,13 @@ module ApplicationHelper
     # This is a bit heavy, especially if Statusify has been around for some time.
     # Pass true to force reset cache.
     Rails.cache.fetch('dated_incidents', force: force) do
+      # Don't panic if we're out of incidents
+      return if Incident.count == 0
+      # The range over which we operate
       begins = Incident.first.created_at.to_date
       ends = Incident.last.updated_at.to_date
       # Minor check to make sure things don't blow up
       begins, ends = ends, begins if begins > ends
-      # The range over which we operate
       range = begins..ends
       @dated_incidents = Hash.new
       range.each do |date|
