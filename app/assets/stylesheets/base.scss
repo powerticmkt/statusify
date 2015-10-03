@@ -34,3 +34,7 @@ footer {
 .alert-notice {
  @extend .alert-warning !optional;
 }
+
+.private-status {
+  float: right;
+}

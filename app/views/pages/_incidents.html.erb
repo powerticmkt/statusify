@@ -35,6 +35,9 @@
               <a href="/incidents/delete/<%= i.id %>" data-confirm="Are you sure? Deleting an incident is irreversible.">
                 <button class="btn btn-danger btn-sm admin-button">Delete Incident</button>
               </a>
+              <% unless i.public %>
+               <div class="private-status text-muted">Private Incident</div>
+              <% end %>
           <% end %>
 
         </div>
