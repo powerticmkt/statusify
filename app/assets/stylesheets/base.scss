@@ -30,3 +30,7 @@ footer {
 #poweredby {
   float: right;
 }
+
+.alert-notice {
+ @extend .alert-warning !optional;
+}
