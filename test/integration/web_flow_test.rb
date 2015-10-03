@@ -73,7 +73,7 @@ class WebFlowTest < ActionDispatch::IntegrationTest
   test 'view incident' do
     r = get "/incidents/#{Incident.first(2).last.id}"
     assert_equal nil, flash['warning']
-    r = get '/incidents/12932947293429'
+    r = get "/incidents/#{(rand * 10_000).to_i}"
     assert_equal 'Unable to find that incident', flash['warning']
   end
 
