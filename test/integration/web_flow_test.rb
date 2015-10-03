@@ -41,7 +41,7 @@ class WebFlowTest < ActionDispatch::IntegrationTest
 
   test 'modify incident' do
     sign_in(User.first.email, 'password')
-    get "/incidents/#{Incident.first.id}"
+    get "/incidents/#{Incident.first.id}/edit"
     assert_response :success, 'Could not get edit page'
     # Edit incident with valid parameters
     i = { name: 'Updated name', message: 'updated message', status: 'updated status', component: 'Updated component', severity: 'major' }

@@ -75,7 +75,6 @@ class IncidentsController < ApplicationController
   end
 
   def view
-    # ToDo: Complete the view
     @incident = Incident.find_by_id(params[:id])
     unless @incident
       redirect_to root_path
