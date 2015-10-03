@@ -1,37 +1,42 @@
 <% if @dated_incidents %>
     <% @dated_incidents.each do |date, incidents| %>
         <div class="incident-group-date"><%= date.strftime('%e %B %Y') %></div>
-        <% incidents.each do |i| %>
-            <% if !i.blank? && visible(i) %>
-                <% cache_if !signed_in?, i do %>
-                    <div class="incident-block">
-                      <span class="incident-name text-<%= i.convert_to_level %>"><%= i.name %></span><span class="incident-component text-<%= i.convert_to_level %>"><%= i.component %></span>
-                      <% e = i.events.last %>
-                      <hr class="event-hr"/>
-                      <p class="incident-description"><b><%= e.status %></b>- &nbsp;<%= e.message %></p>
+        <% if incidents %>
+            <% incidents.each do |i| %>
+                <% if !i.blank? && visible(i) %>
+                    <% cache_if !signed_in?, i do %>
+                        <div class="incident-block">
+                          <span class="incident-name text-<%= i.convert_to_level %>"><%= i.name %></span><span class="incident-component text-<%= i.convert_to_level %>"><%= i.component %></span>
+                          <% e = i.events.last %>
+                          <hr class="event-hr"/>
+                          <p class="incident-description"><b><%= e.status %></b>- &nbsp;<%= e.message %></p>
 
-                      <p class="incident-updated-at"><%= e.updated_at.strftime('%b %e, %H:%M %Z') %></p>
+                          <p class="incident-updated-at"><%= e.updated_at.strftime('%b %e, %H:%M %Z') %></p>
 
 
-                      <% if signed_in? %>
-                          <a href="/incidents/<%= i.id %>">
-                            <button class="btn btn-warning btn-sm admin-button">Update Incident</button>
-                          </a>
-                          <a href="/incidents/delete/<%= i.id %>" data-confirm="Are you sure? Deleting an incident is irreversible." class="admin-button">
-                            <button class="btn btn-danger btn-sm">Delete Incident</button>
-                          </a>
-                          <% unless i.public %>
-                              <div class="private-status text-muted">Private Incident</div>
+                          <% if signed_in? %>
+                              <a href="/incidents/<%= i.id %>">
+                                <button class="btn btn-warning btn-sm admin-button">Update Incident</button>
+                              </a>
+                              <a href="/incidents/delete/<%= i.id %>" data-confirm="Are you sure? Deleting an incident is irreversible." class="admin-button">
+                                <button class="btn btn-danger btn-sm">Delete Incident</button>
+                              </a>
+                              <% unless i.public %>
+                                  <div class="private-status text-muted">Private Incident</div>
+                              <% end %>
                           <% end %>
-                      <% end %>
-                    </div>
+                        </div>
+                    <% end %>
+                <% else %>
+                    <%= render partial: 'pages/nothing' %>
                 <% end %>
-            <% else %>
-                <%= render partial: 'pages/nothing' %>
+                <hr class="hr-top"/>
             <% end %>
-            <hr class="hr-top"/>
+        <% else %>
+            <%= render partial: 'pages/nothing' %>
         <% end %>
     <% end %>
+
 <% else %>
     <%= render partial: 'pages/nothing' %>
 <% end %>
