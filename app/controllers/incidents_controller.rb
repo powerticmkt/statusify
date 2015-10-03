@@ -35,7 +35,7 @@ class IncidentsController < ApplicationController
     @incident.component = incident_params[:component]
     @incident.severity = incident_params[:severity]
     @incident.public = incident_params[:public]
-    event_params = { message: incident_params[:event][:message], status: incident_params[:event][:status] }
+    event_params = {message: incident_params[:event][:message], status: incident_params[:event][:status]}
     @event = @incident.events.build(event_params)
     if @incident.save || @event.save
       response.headers['status'] = 'success'
@@ -76,18 +76,19 @@ class IncidentsController < ApplicationController
 
   def view
     @incident = Incident.find_by_id(params[:id])
-    unless @incident
+    if @incident.blank?
       redirect_to root_path
       flash[:warning] = 'Unable to find that incident'
-    end
-    if @incident.public? || signed_in?
-      render 'incidents/view'
     else
-      redirect_to root_path
-      flash[:warning] = 'Unable to find that incident'
+      if @incident.public? || signed_in?
+        render 'incidents/view'
+      else
+        redirect_to root_path
+        flash[:warning] = 'Unable to find that incident.'
+      end
     end
   end
-  
+
   private
 
   def incident_params

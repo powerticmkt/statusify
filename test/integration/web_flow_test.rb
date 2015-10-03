@@ -70,6 +70,13 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     assert_equal 'success', response.headers['status'], 'Unable to deactivate valid incident'
   end
 
+  test 'view incident' do
+    r = get "/incidents/#{Incident.first(2).last.id}"
+    assert_equal nil, flash['warning']
+    r = get '/incidents/12932947293429'
+    assert_equal 'Unable to find that incident', flash['warning']
+  end
+
   def sign_in(email, password)
     post_via_redirect '/session', 'session[email]' => email, 'session[password]' => password
     response
