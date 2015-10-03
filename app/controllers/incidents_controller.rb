@@ -1,6 +1,6 @@
 class IncidentsController < ApplicationController
   skip_before_filter :verify_authenticity_token if ENV['STRESS-TEST']
-  before_action :require_login
+  before_action :require_login, except: [:view]
 
   def new
     @incident ||= current_user.incidents.new
@@ -35,11 +35,11 @@ class IncidentsController < ApplicationController
     @incident.component = incident_params[:component]
     @incident.severity = incident_params[:severity]
     @incident.public = incident_params[:public]
-    event_params = { message: incident_params[:event][:message], status: incident_params[:event][:status] }
+    event_params = {message: incident_params[:event][:message], status: incident_params[:event][:status]}
     @event = @incident.events.build(event_params)
     if @incident.save || @event.save
       response.headers['status'] = 'success'
-      flash[:success] = 'Updated incident successfully.'
+      flash[:success] = 'Incident updated successfully.'
       dated_incidents(true)
       redirect_to root_path
     else
@@ -73,7 +73,22 @@ class IncidentsController < ApplicationController
     end
     redirect_to root_path
   end
-  
+
+  def view
+    @incident = Incident.find_by_id(params[:id])
+    if @incident.blank?
+      redirect_to root_path
+      flash[:warning] = 'Unable to find that incident'
+    else
+      if @incident.public? || signed_in?
+        render 'incidents/view'
+      else
+        redirect_to root_path
+        flash[:warning] = 'Unable to find that incident.'
+      end
+    end
+  end
+
   private
 
   def incident_params

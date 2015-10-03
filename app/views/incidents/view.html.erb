@@ -1,0 +1,27 @@
+<div class="container-fluid" id="incident-page">
+  <div class="col-sm-1"></div>
+  <div class="incident-block col-sm-10">
+    <p class="incident-date"><span class="inner-date"><%= @incident.updated_at.strftime('%e %b, %Y') %></span></p>
+
+          <span class="incident-name text-<%= @incident.convert_to_level %>"><%= @incident.name %>
+
+            <% if signed_in? && @incident.active? %><%= link_to link_to_incident(@incident, 'deactivate') do %>
+                <button class="btn btn-success deactivate-button btn-xs admin-button">Deactivate incident</button>
+            <% end %>
+          <% end %>
+          </span>
+
+    <span class="incident-component text-<%= @incident.convert_to_level %>"><%= @incident.component %></span>
+
+    <% all_events(@incident).each do |e| %>
+        <hr class="event-hr"/>
+        <p class="incident-description"><b><%= e.status %></b>- &nbsp;<%= e.message %></p>
+
+        <p class="incident-updated-at"><%= e.updated_at.strftime('%b %e, %H:%M %Z') %></p>
+    <% end %>
+
+    <%= render :partial => 'shared/incident_controls' , locals: {incident: @incident}%>
+
+  </div>
+  <div class="col-sm-1"></div>
+</div>
