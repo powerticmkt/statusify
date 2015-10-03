@@ -45,11 +45,11 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     assert_response :success, 'Could not get edit page'
     # Edit incident with valid parameters
     i = { name: 'Updated name', message: 'updated message', status: 'updated status', component: 'Updated component', severity: 'major' }
-    r = edit_incident(i, "/incidents/#{Incident.first.id}")
+    r = edit_incident(i, "/incidents/#{Incident.first.id}/edit")
     assert_equal 'success', r.headers['status'], 'Could not edit valid incident'
     # Edit incident with invalid parameters
     i = { name: '', message: '', status: '', component: '', severity: '' }
-    r = edit_incident(i, "/incidents/#{Incident.first.id}")
+    r = edit_incident(i, "/incidents/#{Incident.first.id}/edit")
     assert_equal 'failed', r.headers['status'], 'Could edit invalid incident'
   end
 
@@ -66,7 +66,7 @@ class WebFlowTest < ActionDispatch::IntegrationTest
   test 'deactivate incident' do
     sign_in(User.first.email, 'password')
     # Deactivate valid incident
-    r = get "/incidents/deactivate/#{Incident.first(2).last.id}"
+    r = get "/incidents/#{Incident.first(2).last.id}/deactivate"
     assert_equal 'success', response.headers['status'], 'Unable to deactivate valid incident'
   end
 

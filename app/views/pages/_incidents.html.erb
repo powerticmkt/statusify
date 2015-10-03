@@ -11,10 +11,13 @@
         <div class="incident-block">
           <p class="incident-date"><span class="inner-date"><%= i.updated_at.strftime('%e %b, %Y') %></span></p>
 
+          <%= link_to link_to_incident(i.id, 'view') do %>
           <span class="incident-name text-<%= i.convert_to_level %>"><%= i.name %>
+          <% end %>
 
-            <% if signed_in? && active %><a href="/incidents/deactivate/<%= i.id %>">
-            <button class="btn btn-success deactivate-button btn-xs admin-button">Deactivate incident</button>
+            <% if signed_in? && active %><%= link_to link_to_incident(i, 'deactivate') do %>
+                <button class="btn btn-success deactivate-button btn-xs admin-button">Deactivate incident</button>
+            <% end %>
           </a>
           <% end %>
           </span>
@@ -28,17 +31,7 @@
               <p class="incident-updated-at"><%= e.updated_at.strftime('%b %e, %H:%M %Z') %></p>
           <% end %>
 
-          <% if signed_in? %>
-              <a href="/incidents/<%= i.id %>">
-                <button class="btn btn-warning btn-sm admin-button">Update Incident</button>
-              </a>
-              <a href="/incidents/delete/<%= i.id %>" data-confirm="Are you sure? Deleting an incident is irreversible.">
-                <button class="btn btn-danger btn-sm admin-button">Delete Incident</button>
-              </a>
-              <% unless i.public %>
-               <div class="private-status text-muted">Private Incident</div>
-              <% end %>
-          <% end %>
+          <%= render :partial => 'shared/incident_controls' , locals: {incident: i}%>
 
         </div>
     <% end %>

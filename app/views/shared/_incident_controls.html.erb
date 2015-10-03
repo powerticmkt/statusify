@@ -1,0 +1,11 @@
+<% if signed_in? %>
+    <%= link_to link_to_incident(incident.id, 'edit') do %>
+        <button class="btn btn-warning btn-sm admin-button">Update Incident</button>
+    <% end %>
+    <%= link_to link_to_incident(incident.id, 'delete'), data: {confirm: 'Are you sure? Deleting an incident is irreversible.'} do %>
+        <button class="btn btn-danger btn-sm">Delete Incident</button>
+    <% end %>
+    <% unless incident.public? %>
+        <div class="private-status text-muted">Private Incident</div>
+    <% end %>
+<% end %>

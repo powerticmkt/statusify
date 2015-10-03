@@ -6,25 +6,15 @@
                 <% if !i.blank? && visible(i) %>
                     <% cache_if !signed_in?, i do %>
                         <div class="incident-block">
-                          <span class="incident-name text-<%= i.convert_to_level %>"><%= i.name %></span><span class="incident-component text-<%= i.convert_to_level %>"><%= i.component %></span>
+                          <%= link_to link_to_incident(i.id, 'view') do %>
+                          <span class="incident-name text-<%= i.convert_to_level %>"><%= i.name %></span><% end %><span class="incident-component text-<%= i.convert_to_level %>"><%= i.component %></span>
                           <% e = i.events.last %>
                           <hr class="event-hr"/>
                           <p class="incident-description"><b><%= e.status %></b>- &nbsp;<%= e.message %></p>
 
                           <p class="incident-updated-at"><%= e.updated_at.strftime('%b %e, %H:%M %Z') %></p>
 
-
-                          <% if signed_in? %>
-                              <a href="/incidents/<%= i.id %>">
-                                <button class="btn btn-warning btn-sm admin-button">Update Incident</button>
-                              </a>
-                              <a href="/incidents/delete/<%= i.id %>" data-confirm="Are you sure? Deleting an incident is irreversible." class="admin-button">
-                                <button class="btn btn-danger btn-sm">Delete Incident</button>
-                              </a>
-                              <% unless i.public %>
-                                  <div class="private-status text-muted">Private Incident</div>
-                              <% end %>
-                          <% end %>
+                          <%= render :partial => 'shared/incident_controls' , locals: {incident: i}%>
                         </div>
                     <% end %>
                 <% else %>
