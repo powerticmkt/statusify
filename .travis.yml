@@ -12,7 +12,6 @@ gemfile:
 matrix:
   allow_failures:
     - gemfile: rails-edge.gemfile
-:
 notifications:
   slack: statusify:MjsJiVHnuAWedRhosYYnaJE8
 
