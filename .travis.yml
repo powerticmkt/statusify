@@ -14,4 +14,3 @@ matrix:
     - gemfile: rails-edge.gemfile
 notifications:
   slack: statusify:MjsJiVHnuAWedRhosYYnaJE8
-

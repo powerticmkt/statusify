@@ -25,10 +25,12 @@
           <span class="incident-component text-<%= i.convert_to_level %>"><%= i.component %></span>
 
           <% all_events(i).each do |e| %>
-              <hr class="event-hr"/>
-              <p class="incident-description"><b><%= e.status %></b>- &nbsp;<%= e.message %></p>
+              <% cache_if !signed_in?, e do %>
+                <hr class="event-hr"/>
+                <p class="incident-description"><b><%= e.status %></b>- &nbsp;<%= e.message %></p>
 
-              <p class="incident-updated-at"><%= e.updated_at.strftime('%b %e, %H:%M %Z') %></p>
+                <p class="incident-updated-at"><%= e.updated_at.strftime('%b %e, %H:%M %Z') %></p>
+              <% end %>
           <% end %>
 
           <%= render :partial => 'shared/incident_controls' , locals: {incident: i}%>
