@@ -5,7 +5,7 @@
 
           <span class="incident-name text-<%= @incident.convert_to_level %>"><%= @incident.name %>
 
-            <% if signed_in? && @incident.active? %><%= link_to link_to_incident(@incident, 'deactivate') do %>
+            <% if signed_in? && @incident.active? %><%= link_to link_to_incident(@incident.id, 'deactivate') do %>
                 <button class="btn btn-success deactivate-button btn-xs admin-button">Deactivate incident</button>
             <% end %>
           <% end %>
