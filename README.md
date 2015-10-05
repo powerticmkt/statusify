@@ -2,6 +2,8 @@
 
 Statusify is a web-application status app, written entirely in Ruby.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Why statusify?
 
 Statusify is built on Rails, and it makes most sense if you run another Rails app. You won't have to bother setting up another runtime environment, like PHP just to run a status app.
