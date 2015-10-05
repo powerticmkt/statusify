@@ -1,7 +1,7 @@
 require 'test_helper'
 
-class ApplicationHelperTest < ActionView::TestCase
-  # Even the application helper does a lot of work. We gotta test it,
+class IncidentsHelperTest < ActionView::TestCase
+  # Even the incident helper does a lot of work. We gotta test it,
   # cuz even it might make things blow up big-time.
   include ApplicationHelper
 
@@ -28,7 +28,7 @@ class ApplicationHelperTest < ActionView::TestCase
     @current_user = nil
     @visible_incidents = visible_incidents
     assert_equal Incident, @visible_incidents.first.class, 'visible_incidents is not returning incidents.'
-    assert_equal true, @visible_incidents.first.public?, 'Shpwing private incidents.'
+    assert_equal true, @visible_incidents.first.public?, 'Showing private incidents.'
   end
 
 end
