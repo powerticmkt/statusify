@@ -81,6 +81,8 @@ module ApplicationHelper
         base + 'edit'
       when 'deactivate'
         base + 'deactivate'
+      when 'delete'
+        base + 'delete'
       else
         nil
     end
