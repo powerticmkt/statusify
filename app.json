@@ -6,26 +6,33 @@
   },
   "env":{
     "CUSTOM_RUBY_VERSION":{
-      "required":true
+      "required":false,
+      "value": "2.2.3",
+      "description": "The Ruby version do you want Statusify to run on."
     },
     "LANG":{
-      "required":true
+      "required":false,
+      "description": "The default language used by your app.",
+      "value": "en"
     },
     "RACK_ENV":{
-      "required":true
+      "required":true,
+      "value": "production"
     },
     "RAILS_ENV":{
-      "required":true
+      "required":true,
+      "value": "production"
     },
     "RAILS_SERVE_STATIC_FILES":{
-      "required":true
+      "required":true,
+      "value": "true"
     },
     "SECRET_KEY_BASE":{
-      "required":true
+      "required":true,
+      "generator": "secret"
     }
   },
   "addons":[
-    "memcachier",
     "heroku-postgresql"
   ]
 }
