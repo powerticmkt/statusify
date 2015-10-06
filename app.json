@@ -1,14 +1,18 @@
 {
-  "name":"statusify",
+  "name":"Statusify",
   "description":"Statusify is a web-application status app, written entirely in Ruby on Rails.",
   "scripts":{
     "postdeploy":"bundle exec rake db:setup"
   },
   "env":{
+    "APP_NAME":{
+      "required":true,
+      "description": "The name of your application."
+    },
     "CUSTOM_RUBY_VERSION":{
       "required":false,
       "value": "2.2.3",
-      "description": "The Ruby version do you want Statusify to run on."
+      "description": "The Ruby version you want to run on."
     },
     "LANG":{
       "required":false,
