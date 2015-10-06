@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title><%= APP_CONFIG['title'] %></title>
   <%= render :partial => 'shared/head' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<!-- Navigation partial -->
 <%= render :partial => 'shared/navigation' %>
-<!-- /Navigation -->
-<!-- Flash -->
 <%= render :partial => 'shared/flash' %>
-<!-- /flash -->
+
 <%= yield %>
 
 <%= render :partial => 'shared/footer' %>
