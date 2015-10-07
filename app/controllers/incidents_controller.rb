@@ -12,9 +12,9 @@ class IncidentsController < ApplicationController
     if @incident.save
       # Handle successful save
       flash[:success] = 'Incident created successfully.'
-      dated_incidents(true)
       redirect_to root_path
       response.headers['status'] = 'success'
+      DatedIncidentsWorker.perform_async
     else
       response.headers['status'] = 'failed'
       render 'incidents/new'
@@ -25,7 +25,7 @@ class IncidentsController < ApplicationController
     @incident ||= Incident.find_by_id(params[:id])
     @event = Event.find_by_incident_id(params[:id])
     redirect_to root_path if @incident.nil?
-    dated_incidents(true)
+    DatedIncidentsWorker.perform_async
   end
 
   def update
@@ -40,8 +40,8 @@ class IncidentsController < ApplicationController
     if @incident.save || @event.save
       response.headers['status'] = 'success'
       flash[:success] = 'Incident updated successfully.'
-      dated_incidents(true)
       redirect_to root_path
+      DatedIncidentsWorker.perform_async
     else
       response.headers['status'] = 'failed'
       flash[:danger] = 'Please fill all entries.'
@@ -55,12 +55,12 @@ class IncidentsController < ApplicationController
       response.headers['status'] = 'success'
       i.delete
       flash[:success] = 'Incident deleted successfully.'
-      dated_incidents(true)
     else
       response.headers['status'] = 'failed'
       flash[:danger] = 'Failed to delete incident.'
     end
     redirect_to root_url
+    DatedIncidentsWorker.perform_async if flash[:success]
   end
 
   def deactivate

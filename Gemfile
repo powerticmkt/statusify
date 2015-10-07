@@ -23,12 +23,9 @@ gem 'jquery-rails', '~> 4.0.5'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder', '~> 2.3'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
 # Bootstrap framework
 gem 'bootstrap-sass', '~> 3.3.5'
@@ -36,8 +33,8 @@ gem 'bootstrap-sass', '~> 3.3.5'
 # Clearance, handles auth
 gem 'clearance'
 
-# Kaminari, for pagination
-gem 'kaminari'
+# Sidekiq, jobs processing
+gem 'sidekiq'
 
 # Turbolinks JS fixes
 gem 'jquery-turbolinks'
@@ -46,7 +43,7 @@ group :production do
   # Rails-12factor
   gem 'rails_12factor'
   # Use Puma as the app server
-  gem 'puma'
+  gem 'puma', '~> 2.14'
   # Skylight, metrics.
   gem 'skylight', platforms: :mri
 end
@@ -63,5 +60,4 @@ group :development, :test do
 
   # Coveralls, code coverage
   gem 'coveralls', require: false
-
 end
