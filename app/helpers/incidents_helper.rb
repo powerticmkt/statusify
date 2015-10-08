@@ -53,8 +53,8 @@ module IncidentsHelper
       # Don't panic if we're out of incidents
       return if Incident.count == 0
       # The range over which we operate
-      begins = Incident.first.created_at.to_date
-      ends = Incident.last.updated_at.to_date
+      begins = Incident.minimum(:updated_at).try(:utc).to_date || 1.day.ago
+      ends = Time.now.to_date
       # Minor check to make sure things don't blow up
       begins, ends = ends, begins if begins > ends
       range = begins..ends
