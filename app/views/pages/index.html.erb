@@ -1,3 +1,5 @@
+<% provide(:title, 'Home') %>
+
 <% cache_if !signed_in?, cache_key_for_index do %>
     <div class="container status-page">
 
