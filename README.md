@@ -2,7 +2,8 @@
 
 Statusify is a web-application status app, written entirely in Ruby.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+<!-- Remove the template parameter when we merge to the master branch -->
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/ur0/statusify/tree/development)
 
 A demo is available on [Heroku](https://statusify-dev.herokuapp.com/).
 You can [log in](https://statusify-dev.herokuapp.com/sign_in) with credentials `test@test.com:test` to try out Statusify. 
