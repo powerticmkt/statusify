@@ -38,6 +38,7 @@
   },
   "addons":[
     "heroku-postgresql",
-    "heroku-redis"
+    "heroku-redis",
+    "memcachier"
   ]
 }

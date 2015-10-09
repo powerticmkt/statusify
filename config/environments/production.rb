@@ -82,4 +82,15 @@ Rails.application.configure do
     ActiveRecord::Base.logger = Rails.logger.clone
     ActiveRecord::Base.logger.level = 1
   end
+
+  # Memcached - cache store
+  config.cache_store = :dalli_store,
+      (ENV['MEMCACHIER_SERVERS'] || '').split(','),
+      {:username => ENV['MEMCACHIER_USERNAME'],
+       :password => ENV['MEMCACHIER_PASSWORD'],
+       :failover => true,
+       :socket_timeout => 1.5,
+       :socket_failure_delay => 0.2
+      }
+
 end
