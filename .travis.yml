@@ -16,3 +16,4 @@ notifications:
   slack: statusify:MjsJiVHnuAWedRhosYYnaJE8
 services:
   - redis-server
+cache: bundler
