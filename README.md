@@ -1,4 +1,4 @@
-# Statusify [![Build Status](https://travis-ci.org/ur0/statusify.svg)](https://travis-ci.org/ur0/statusify) [![Coverage Status](https://coveralls.io/repos/ur0/statusify/badge.svg?service=github)](https://coveralls.io/github/ur0/statusify) [![Code Climate](https://codeclimate.com/github/ur0/statusify/badges/gpa.svg)](https://codeclimate.com/github/ur0/statusify)
+# Statusify [![Build Status](https://travis-ci.org/ur0/statusify.svg)](https://travis-ci.org/ur0/statusify) [![Coverage Status](https://coveralls.io/repos/ur0/statusify/badge.svg?service=github)](https://coveralls.io/github/ur0/statusify) [![Code Climate](https://codeclimate.com/github/ur0/statusify/badges/gpa.svg)](https://codeclimate.com/github/ur0/statusify) [![Slack Status](https://statusify-slack.herokuapp.com/badge.svg)](https://statusify-slack.herokuapp.com)
 
 Statusify is a web-application status app, written entirely in Ruby.
 
