@@ -1,39 +1,40 @@
-
-<div class="container-fluid" id="navigation-1">
-  <div class="navbar-header">
-    <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <div class="navbar-brand">
-      <% if active_incidents.blank? %>
-          <div id="header-status"><%= APP_CONFIG['name'] %> <span class="up">Status</span></div>
-      <% else %>
-          <div id="header-status"><%= APP_CONFIG['name'] %> <span class="down">Status</span></div>
-      <% end %>
+<nav class="navbar navbar-default navbar-fixed-top" id="navigation-1" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-brand">
+        <% if active_incidents.blank? %>
+            <div id="header-status"><%= APP_CONFIG['name'] %> <span class="up">Status</span></div>
+        <% else %>
+            <div id="header-status"><%= APP_CONFIG['name'] %> <span class="down">Status</span></div>
+        <% end %>
+      </div>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <%= link_to('Home', root_path) %>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if signed_in? %>
+            <li>
+              <%= link_to('New incident', '/incidents/new') %>
+            </li>
+            <li>
+              <%= link_to('Sign out', '/signout') %>
+            </li>
+        <% else %>
+            <li>
+              <%= link_to('Sign in', '/sign_in') %>
+            </li>
+        <% end %>
+      </ul>
     </div>
   </div>
-  <nav id="navbar" class="collapse navbar-collapse">
-    <ul class="nav navbar-nav">
-      <li>
-      <%= link_to('Home', root_path) %>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <% if signed_in? %>
-      <li>
-      <%= link_to('New incident', '/incidents/new') %>
-      </li>
-      <li>
-        <%= link_to('Sign out', '/signout') %>
-      </li>
-      <% else %>
-      <li>
-        <%= link_to('Sign in', '/sign_in') %>
-      </li>
-      <% end %>
-    </ul>
-  </nav>
-</div>
+</nav>
