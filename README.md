@@ -8,6 +8,9 @@ Statusify is a web-application status app, written entirely in Ruby.
 A demo is available on [Heroku](https://statusify-dev.herokuapp.com/).
 You can [log in](https://statusify-dev.herokuapp.com/sign_in) with credentials `test@test.com:test` to try out Statusify. 
 
+This is what Statusify currently looks like.
+![ui](https://cloud.githubusercontent.com/assets/7693065/10410928/612b0b20-6f6f-11e5-90ad-7535d704e8ef.png)
+
 ## Why statusify?
 
 Statusify is built on Rails, and it makes most sense if you run another Rails app. You won't have to bother setting up another runtime environment, like PHP just to run a status app.
