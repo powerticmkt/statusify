@@ -60,7 +60,7 @@ module IncidentsHelper
       range = begins..ends
       @dated_incidents = Hash.new
       range.each do |date|
-        i = Incident.where(:created_at => date.beginning_of_day..date.end_of_day)
+        i = Incident.where(created_at: date.beginning_of_day..date.end_of_day)
         if !i.empty?
           @dated_incidents[date] = i
         else
