@@ -13,6 +13,20 @@ class SubscribersController < ApplicationController
     end
   end
 
+  def activate
+    # Activate the subscriber
+    activation_key = params[:activation_key]
+    subscriber = Subscriber.find_by_activation_key(activation_key)
+    if subscriber && !subscriber.activated?
+      subscriber.activated = true
+      subscriber.save
+      flash[:success] = "You will now receive all updates at #{subscriber.email}."
+    else !subscriber
+      flash[:danger] = 'Invalid activation key'
+    end
+    redirect_to root_path
+  end
+
   private
 
   def subscriber_params

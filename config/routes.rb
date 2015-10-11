@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   get 'signout' => 'clearance/sessions#destroy'
   get 'history' => 'pages#history'
   post 'subscribers/new' => 'subscribers#create', as: 'create_subscriber'
-  get 'activate/:activation_key' => 'subscribers#activate'
+  get 'subscribers/activate/:activation_key' => 'subscribers#activate', as: 'activate_subscriber'
 
 end
