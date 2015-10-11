@@ -12,8 +12,7 @@ Rails.application.routes.draw do
   delete 'incidents/:id' => 'incidents#delete'
   get 'signout' => 'clearance/sessions#destroy'
   get 'history' => 'pages#history'
-  get 'subscribers/new' => 'subscribers#new'
-  post 'subscribers/new' => 'subscribers#create', as: 'subscribers'
+  post 'subscribers/new' => 'subscribers#create', as: 'create_subscriber'
   get 'activate/:activation_key' => 'subscribers#activate'
 
 end

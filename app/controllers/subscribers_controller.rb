@@ -1,14 +1,14 @@
 class SubscribersController < ApplicationController
-  def new
-    @subscriber = Subscriber.new
-  end
 
   def create
     # Create the subscriber
     subscriber = Subscriber.new(subscriber_params)
     if subscriber.save
       flash[:success] = 'Check your mail to confirm your subscription.'
-      SubscriberMailer.delay.activate_user(subscriber.activation_key)
+      SubscriberMailer.activate_user(subscriber)
+      redirect_to root_path
+    else
+      flash[:danger] = 'Please check the mail address before continuing.'
       redirect_to root_path
     end
   end
@@ -16,6 +16,6 @@ class SubscribersController < ApplicationController
   private
 
   def subscriber_params
-    params.require(:subscriber).permit(:email)
+    params.permit(:email)
   end
 end

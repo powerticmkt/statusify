@@ -8,4 +8,26 @@
     <% unless incident.public? %>
         <div class="private-status text-muted">Private Incident</div>
     <% end %>
+<% else %>
+    <% cache_if(!signed_in?, 'incident-controls-v1') do %>
+        <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#subscribe-modal">Subscribe for updates
+        </button>
+        <div id="subscribe-modal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Subscribe to latest alerts from <%= APP_CONFIG['name'] %>.</h4>
+              </div>
+              <div class="modal-body">
+                <p>Get notified whenever there's an update to <%= APP_CONFIG['name'] %>'s status.</p>
+                <%= form_tag create_subscriber_url do %>
+                    <%= text_field_tag :email, nil, placeholder: 'Email', class: 'form-control' %>
+                    <%= submit_tag('Submit', class: 'btn btn-md btn-success btn-sumbit') %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
 <% end %>
