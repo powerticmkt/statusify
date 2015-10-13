@@ -63,4 +63,7 @@ group :development, :test do
 
   # Don't spam mails while developing
   gem 'letter_opener'
+
+  # Sidekiq web needs sinatra
+  gem 'sinatra'
 end

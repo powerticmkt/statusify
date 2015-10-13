@@ -1,0 +1,15 @@
+There's an update to <%= APP_CONFIG['name'] %>'s status.
+=======================================================
+
+<% @incident.updated_at.strftime('%e %b, %Y') %>
+
+<%= @incident.name %> || <%= @incident.component %>
+
+<% @event = Event.where(:incident_id == @incident.id).last %>
+
+<%= @event.updated_at.strftime('%b %e, %H:%M %Z') %>
+----------------------------------------------
+<%= @event.status %>
+----------------------------------------------
+<%= @event.message %>
+==============================================

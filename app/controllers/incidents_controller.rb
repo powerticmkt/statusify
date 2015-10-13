@@ -37,11 +37,13 @@ class IncidentsController < ApplicationController
     @incident.public = incident_params[:public]
     event_params = {message: incident_params[:event][:message], status: incident_params[:event][:status]}
     @event = @incident.events.build(event_params)
-    if @incident.save || @event.save
+    incident_saved = @incident.save
+    if incident_saved || @event.save
       response.headers['status'] = 'success'
       flash[:success] = 'Incident updated successfully.'
       redirect_to root_path
       DatedIncidentsWorker.perform_async
+      NotifySubscriberWorker.perform_async(@incident.id)
     else
       response.headers['status'] = 'failed'
       flash[:danger] = 'Please fill all entries.'

@@ -14,5 +14,8 @@ Rails.application.routes.draw do
   get 'history' => 'pages#history'
   post 'subscribers/new' => 'subscribers#create', as: 'create_subscriber'
   get 'subscribers/activate/:activation_key' => 'subscribers#activate', as: 'activate_subscriber'
-
+  if Rails.env == 'development'
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end
