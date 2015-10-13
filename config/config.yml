@@ -1,11 +1,10 @@
 development:
-  name: <%= (ENV['APP_NAME'] || 'statusify').capitalize %>
-  theme: <%= ENV['STATUSIFY_THEME'] || 'flat-ui' %>
+  name: Statusify
+  theme: flat-ui
 
 test:
-  name: <%= (ENV['APP_NAME'] || 'statusify').capitalize %>
-  theme: <%= ENV['STATUSIFY_THEME'] || 'flat-ui' %>
+  name: Statusify
+  theme: flat-ui
 
 production:
-  name: <%= (ENV['APP_NAME'] || 'statusify').capitalize %>
-  theme: <%= ENV['STATUSIFY_THEME'] || 'flat-ui' %>
+  theme: flat-ui
