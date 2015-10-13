@@ -8,4 +8,9 @@ module PagesHelper
   def visible(incident)
     incident.public? || signed_in?
   end
+
+  def timeline_class(current)
+    # This alternatively sets the timeline-inverted class
+    current ? 'timeline-inverted' : nil
+  end
 end
