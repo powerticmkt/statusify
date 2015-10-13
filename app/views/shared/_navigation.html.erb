@@ -9,9 +9,9 @@
       </button>
       <div class="navbar-brand">
         <% if active_incidents.blank? %>
-            <div id="header-status"><%= APP_CONFIG['name'] %> <span class="up">Status</span></div>
+            <div id="header-status"><%= Statusify.app_name %> <span class="up">Status</span></div>
         <% else %>
-            <div id="header-status"><%= APP_CONFIG['name'] %> <span class="down">Status</span></div>
+            <div id="header-status"><%= Statusify.app_name %> <span class="down">Status</span></div>
         <% end %>
       </div>
     </div>

@@ -17,7 +17,7 @@ module ApplicationHelper
     end
   end
   def full_title
-    app_name ||= APP_CONFIG['name']
+    app_name = Statusify.app_name
     title = content_for :title
     if title
       "#{title} | #{app_name}"
