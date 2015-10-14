@@ -1,10 +1,12 @@
 development:
   name: Statusify
   theme: flat-ui
+  url: 'http://localhost:3000'
 
 test:
   name: Statusify
   theme: flat-ui
+  url: 'http://localhost:3000'
 
 production:
   theme: flat-ui
