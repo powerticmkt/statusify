@@ -12,17 +12,4 @@ class Subscriber < ActiveRecord::Base
     self.activation_key = SecureRandom.urlsafe_base64(20)
   end
 
-  def self.activate
-    # Activate the subscriber
-    # Returns true if the key is valid and the subscriber isn't already activated
-    # Else, returns nil
-    subscriber = Subscriber.find_by_activation_key(self.activation_key)
-    if subscriber && !subscriber.activated
-      subscriber.activated = true
-      true
-    else
-      nil
-    end
-  end
-
 end
