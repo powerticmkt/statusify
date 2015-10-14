@@ -1,15 +1,18 @@
 There's an update to <%= Statusify.app_name %>'s status.
 =======================================================
 
-<% @incident.updated_at.strftime('%e %b, %Y') %>
+<%= @incident.name %>
 
-<%= @incident.name %> || <%= @incident.component %>
+Component affected: <%= @incident.component %>
 
 <% @event = Event.where(:incident_id == @incident.id).last %>
 
 <%= @event.updated_at.strftime('%b %e, %H:%M %Z') %>
 ----------------------------------------------
-<%= @event.status %>
+Current status: <%= @event.status %>
 ----------------------------------------------
 <%= @event.message %>
-==============================================
+
+-------------------
+View this incident on the status page: <%= Statusify.app_url + '/incidents/' + @incident.id.to_s %>
+-------------------

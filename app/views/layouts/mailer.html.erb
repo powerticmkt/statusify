@@ -1,35 +1,60 @@
 <html>
+<head>
+  <style type="text/css">
+      <!--  Add all mailer-specific styles here  -->
+      body {
+          color: #34495E !important;
+      }
+      .mail-body {
+          text-align: center;
+      }
+      .btn-success {
+          color: #FFF !important;
+          background-color: #5CB85C;
+          display: inline-block;
+          margin-bottom: 0;
+          font-weight: normal;
+          text-align: center;
+          vertical-align: middle;
+          cursor: pointer;
+          background-image: none;
+          border: 1px solid transparent;
+          white-space: nowrap;
+          padding: 6px 12px;
+          font-size: 14px;
+          line-height: 1.42857;
+          border-radius: 4px;
+          -moz-user-select: none;
+      }
+      .text-muted {
+          color: gray !important;
+          font-size: 0.975rem !important;
+      }
+      .incident-block {
+          padding: 1rem;
+          border-radius: 0.2rem;
+          border: 0.2rem solid rgba(52, 73, 94, 0.67);
+          margin-bottom: 0.2rem;
+      }
+      .incident-name {
+          font-size: 2rem;
+      }
+      .incident-component {
+          float: right;
+      }
+      .text-danger {
+          color: firebrick;
+      }
+      .text-warning {
+          color: yellow;
+      }
+      .incident-updated-at {
+          color: lightgray;
+      }    
+  </style>
+</head>
 <body>
-<style>
-    <!--  Add all mailer-specific styles here  -->
-    .mail-body {
-        color: #34495E !important;
-        text-align: center;
-    }
-    .btn-success {
-        color: #FFF !important;
-        background-color: #5CB85C;
-        display: inline-block;
-        margin-bottom: 0;
-        font-weight: normal;
-        text-align: center;
-        vertical-align: middle;
-        cursor: pointer;
-        background-image: none;
-        border: 1px solid transparent;
-        white-space: nowrap;
-        padding: 6px 12px;
-        font-size: 14px;
-        line-height: 1.42857;
-        border-radius: 4px;
-        -moz-user-select: none;
-    }
-    .text-muted {
-        color: gray;
-        font-size: 0.975rem;
-    }
-</style>
-<div class="mail-body">
+<div>
   <%= yield %>
 </div>
 </body>
