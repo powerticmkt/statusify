@@ -11,6 +11,11 @@ module Statusify
       (YAML_CONFIG['name'] || ENV['APP_NAME']).capitalize
     end
 
+    def app_url
+      # The URL on which the app is running
+      (YAML_CONFIG['url'] || ENV['APP_URL']).freeze
+    end
+
     def theme
       # The current theme we're using
       YAML_CONFIG['theme'] || 'flat-ui'
