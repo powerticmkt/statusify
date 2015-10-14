@@ -77,6 +77,33 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     assert_equal 'Unable to find that incident', flash['warning']
   end
 
+  test 'subscribe' do
+    # Post a valid email to the subscribe form
+    post create_subscriber_path, email: 'valid-email@example.com'
+    assert_equal 'Check your mail to confirm your subscription.', flash['success'], 'Considering valid emails invalid'
+    # Try an invalid email
+    post create_subscriber_path, email: 'bad-mail@domain'
+    assert_equal 'Please check the mail address before continuing.', flash['danger'], 'Considering invalid emails valid'
+  end
+
+  test 'activate' do
+    # Valid activation
+    get (Statusify.app_url + '/subscribers/activate/' + Subscriber.first.activation_key)
+    assert_equal "You will now receive all updates at #{Subscriber.first.email}.", flash[:success], 'Unable to activate'
+    # Try an invalid one
+    get (Statusify.app_url + '/subscribers/activate/' + 'invalid_activation_key')
+    assert_equal 'Invalid activation key', flash[:danger], 'Activated using an invalid key.'
+  end
+
+  test 'unsubscribe' do
+    # Do a valid unsubscribe
+    get (Statusify.app_url + '/subscribers/unsubscribe/' + Subscriber.first.activation_key)
+    assert_equal 'Unsubscribed successfully. You will no longer receive any mails from us.', flash[:success], 'Unable to unsubscribe'
+    # Try an invalid one
+    get (Statusify.app_url + '/subscribers/unsubscribe/' + 'invalid_activation_key')
+    assert_equal 'Invalid URL. Please try again.', flash[:danger], 'Unsubscribed using an invalid key.'
+  end
+
   def sign_in(email, password)
     post_via_redirect '/session', 'session[email]' => email, 'session[password]' => password
     response

@@ -24,8 +24,7 @@ class SubscribersController < ApplicationController
     else !subscriber
       flash[:danger] = 'Invalid activation key'
     end
-    render 'pages/index'
-    #redirect_to root_path
+    redirect_to root_path
   end
 
   def unsubscribe

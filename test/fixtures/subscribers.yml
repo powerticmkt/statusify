@@ -4,8 +4,10 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+one:
+  email: example1@example.com
+  activation_key: '-S_ocVuLlZgE2vejTeI7BJOIfIk'
+
+two:
+  email: example2@example.com
+  activation_key: '_F+ocVuJlgE2vejTeI7BAjOIfIk'
