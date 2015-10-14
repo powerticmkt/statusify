@@ -1,8 +1,9 @@
 class ApplicationMailer < ActionMailer::Base
-  # We need to reload APP_CONFIG since Sidekiq doesn't play nice with it
-  APP_CONFIG = YAML.load(ERB.new(File.read("#{Rails.root}/config/config.yml")).result)[Rails.env]
+  # We need to reload our configuration since Sidekiq doesn't play nice with it
+  require_relative('../../lib/statusify/statusify')
+  include Statusify
   # Require our helpers
   Dir[File.join(File.dirname(__FILE__), '..', 'helpers', '*.rb')].each {|file| require file }
-  default from: APP_CONFIG['name']
+  default from: Statusify.app_name
   layout 'mailer'
 end
