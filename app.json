@@ -43,6 +43,7 @@
   "addons":[
     "heroku-postgresql",
     "heroku-redis",
-    "memcachier"
+    "memcachier",
+    "sendgrid"
   ]
 }
