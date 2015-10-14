@@ -3,8 +3,8 @@
 <% end %>
 
 <%#	The number of incidents we're showing. %>
-<%# 1073741823 is the biggest Fixnum we have. %>
-<% count = active ? 1073741823 : 5 %>
+<% count = active ? Incident.count : 5 %>
+
 
 <% incidents.first(count).each do |i| %>
     <% cache_if(!signed_in?, i) do %>
@@ -12,28 +12,34 @@
           <p class="incident-date"><span class="inner-date"><%= i.updated_at.strftime('%e %b, %Y') %></span></p>
 
           <%= link_to link_to_incident(i.id, 'view') do %>
-          <span class="incident-name text-<%= i.convert_to_level %>"><%= i.name %>
+              <span class="incident-name text-<%= i.convert_to_level %>"><%= i.name %></span>
           <% end %>
-
-            <% if signed_in? && active %><%= link_to link_to_incident(i.id, 'deactivate') do %>
-                <button class="btn btn-success deactivate-button btn-xs admin-button">Deactivate incident</button>
-            <% end %>
-          </a>
-          <% end %>
-          </span>
 
           <span class="incident-component text-<%= i.convert_to_level %>"><%= i.component %></span>
 
-          <% all_events(i).each do |e| %>
-              <% cache_if !signed_in?, e do %>
-                <hr class="event-hr"/>
-                <p class="incident-description"><b><%= e.status %></b>- &nbsp;<%= e.message %></p>
+          <ul class="timeline">
+            <% # Sets the default value for timeline's li child
+               @inverted = false
+            %>
+            <% all_events(i).each do |e| %>
+                <% cache_if !signed_in?, e do %>
+                    <li class="<%= timeline_class(@inverted) %>">
+                      <div class="timeline-panel">
+                        <div class="event-title timeline-title"><%= e.status %></div>
+                        <div class="timeline-body">
+                          <p class="event-message"><%= e.message %></p>
 
-                <p class="incident-updated-at"><%= e.updated_at.strftime('%b %e, %H:%M %Z') %></p>
-              <% end %>
-          <% end %>
+                          <p class="incident-updated-at"><%= e.updated_at.strftime('%b %e, %H:%M %Z') %></p>
+                        </div>
+                      </div>
+                    </li>
+                    <% # Flip @inverted to make the other event appear across the timeline.
+                       @inverted = !@inverted %>
+                <% end %>
+            <% end %>
+          </ul>
 
-          <%= render :partial => 'shared/incident_controls' , locals: {incident: i}%>
+          <%= render :partial => 'shared/incident_controls', locals: {incident: i} %>
 
         </div>
     <% end %>

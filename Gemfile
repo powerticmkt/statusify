@@ -39,6 +39,9 @@ gem 'sidekiq'
 # Turbolinks JS fixes
 gem 'jquery-turbolinks'
 
+# Memcached, for caching
+gem 'dalli'
+
 group :production do
   # Rails-12factor
   gem 'rails_12factor'

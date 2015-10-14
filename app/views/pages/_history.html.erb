@@ -1,7 +1,7 @@
 <% if @dated_incidents %>
     <% @dated_incidents.each do |date, incidents| %>
         <div class="incident-group-date"><%= date.strftime('%e %B %Y') %></div>
-        <% if incidents.any? %>
+        <% if incidents && incidents.any? %>
             <% incidents.each do |i| %>
                 <% if !i.blank? && visible(i) %>
                     <% cache_if !signed_in?, i do %>

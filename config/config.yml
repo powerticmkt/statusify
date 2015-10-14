@@ -1,14 +1,10 @@
 development:
-  name: <%= (ENV['APP_NAME'] || 'statusify').capitalize! %>
-  theme: <%= ENV['STATUSIFY_THEME'] || 'light' %>
-  mail_from: root@localhost
+  name: Statusify
+  theme: flat-ui
 
 test:
-  name: <%= (ENV['APP_NAME'] || 'statusify').capitalize! %>
-  theme: <%= ENV['STATUSIFY_THEME'] || 'light' %>
-  mail_from: root@localhost
+  name: Statusify
+  theme: flat-ui
 
 production:
-  name: <%= (ENV['APP_NAME'] || 'statusify').capitalize! %>
-  theme: <%= ENV['STATUSIFY_THEME'] || 'light' %>
-  mail_from: 'Set this'
+  theme: flat-ui

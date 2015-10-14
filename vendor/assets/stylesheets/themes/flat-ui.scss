@@ -1,0 +1,18 @@
+// The Flat UI. Based on @designmodo's awesome flat-ui theme
+@import "flat-ui-core";
+
+body {
+  .incident-block {
+    padding: 1rem;
+    border-radius: 0.2rem;
+    border: 0.2rem solid rgba(52, 73, 94, 0.67);
+    margin-bottom: 0.2rem;
+    .incident-date {
+      color: grey;
+      font-size: smaller;
+    }
+    .incident-component {
+      float: right;
+    }
+  }
+}
