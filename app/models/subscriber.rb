@@ -4,7 +4,8 @@ class Subscriber < ActiveRecord::Base
   # The activated field does just that
   # We also have the email field, which must adhere to the email regex
   # The activation_key field is a 20-char base64 string to verify if the subscriber has actually subscribed
-  validates :email, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, }
+  # Subscribers' emails must be unique
+  validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, }
 
   before_save do
     # Generate the activation key and return it
