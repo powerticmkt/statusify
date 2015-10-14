@@ -1,6 +1,6 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+<% 1000.times do |n| %>
 
-incident_one:
+incident_<%= n %>:
   name: 'Incident name'
   component: 'API'
   status: 'Down'
@@ -8,10 +8,12 @@ incident_one:
   active: true
   severity: major
 
-incident_two:
+incident_<%= n + 1000 %>:
   name: 'Other incident name'
   component: 'Web App'
   status: 'Investigating'
   public: false
   active: true
   severity: minor
+
+<% end %>

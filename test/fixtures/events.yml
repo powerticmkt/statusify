@@ -1,9 +1,8 @@
-one:
-  message: MyString
-  status: MyString
-  incident: incident_two
+<% (1..2000).each do |n| %>
 
-two:
+<%= n %>:
   message: MyString
   status: MyString
-  incident: incident_one
+  incident: incident_<%= n %>
+
+<% end %>
