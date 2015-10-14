@@ -10,7 +10,7 @@
       "description": "The name of your application."
     },
     "APP_URL": {
-      "required": "true"
+      "required": true,
       "description": "The URL on which you're running Statusify."
     },
     "CUSTOM_RUBY_VERSION":{
