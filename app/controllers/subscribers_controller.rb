@@ -24,7 +24,21 @@ class SubscribersController < ApplicationController
     else !subscriber
       flash[:danger] = 'Invalid activation key'
     end
-    redirect_to root_path
+    render 'pages/index'
+    #redirect_to root_path
+  end
+
+  def unsubscribe
+    # Find the subscriber by the activation key and delete it
+    activation_key = params[:activation_key]
+    subscriber = Subscriber.find_by_activation_key(activation_key)
+    if subscriber
+      subscriber.delete
+      flash[:success] = 'Unsubscribed successfully. You will no longer receive any mails from us.'
+    else
+      flash[:danger] = 'Invalid URL. Please try again.'
+    end
+  redirect_to root_path
   end
 
   private

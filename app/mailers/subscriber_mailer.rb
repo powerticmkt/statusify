@@ -8,7 +8,7 @@ class SubscriberMailer < ApplicationMailer
 
   def notify_subscriber(subscriber, incident_id)
     @incident = Incident.find_by_id(incident_id)
-    mail to: subscriber.email, subject: "There is an update to #{Statusify.app_name}'s status.'"
-    logger.warn('Sent it')
+    @activation_key = subscriber.activation_key
+    mail to: subscriber.email, subject: "There is an update to #{Statusify.app_name}'s status."
   end
 end

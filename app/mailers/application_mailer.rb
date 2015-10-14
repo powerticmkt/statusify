@@ -9,6 +9,6 @@ class ApplicationMailer < ActionMailer::Base
   # Require our helpers
   Dir[File.join(File.dirname(__FILE__), '..', 'helpers', '*.rb')].each { |file| require file }
 
-  default from: Statusify.app_name
+  default from: "#{Statusify.app_name} Team <#{ENV['SENDGRID_USERNAME']}>"
   layout 'mailer'
 end
