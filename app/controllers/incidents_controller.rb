@@ -15,6 +15,8 @@ class IncidentsController < ApplicationController
       redirect_to root_path
       response.headers['status'] = 'success'
       DatedIncidentsWorker.perform_async
+      # Notify subscribers of a new incident
+      NotifySubscriberWorker.perform_async(@incident.id, true)
     else
       response.headers['status'] = 'failed'
       render 'incidents/new'

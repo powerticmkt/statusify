@@ -1,4 +1,4 @@
-There's an update to <%= Statusify.app_name %>'s status.
+<%= @new ? "#{Statusify.app_name} has a new incident" : "There's an update to #{Statusify.app_name}'s status." %>
 =======================================================
 
 <%= @incident.name %>
