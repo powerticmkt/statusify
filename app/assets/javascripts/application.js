@@ -15,7 +15,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require clipboard
 //= require_tree .
 
 jQuery(document).ready(function(){
