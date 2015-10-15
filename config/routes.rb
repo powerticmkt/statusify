@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   delete 'incidents/:id' => 'incidents#delete'
   get 'signout' => 'clearance/sessions#destroy'
   get 'history' => 'pages#history'
+  get 'status.svg' => 'pages#current_status_dot', as: 'status_dot'
 
 end
