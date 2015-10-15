@@ -5,6 +5,6 @@
   <div id="poweredby">Proudly powered by <a href="https://github.com/ur0/statusify">Statusify.</a></div>
 </footer>
 
-<% cache_if(!signed_in?, "#{cache_key_for_index}-status_dot") do %>
+<% cache_if(!signed_in?, "#{cache_key_for_index}-status_dot-#{Incident.where(active: true).count}") do %>
     <%= render partial: 'shared/status_dot' %>
 <% end %>
