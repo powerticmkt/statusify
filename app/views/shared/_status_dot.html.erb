@@ -1,0 +1,31 @@
+<% status_dot_tooltip = signed_in? ? "This is your 'Status Dot'. Click it to get its URL." : "Current service status." %>
+
+<div id="status-dot" class="text-center" data-toggle="tooltip" data-placement="top" title="<%= status_dot_tooltip %>">
+  <%= image_tag @favicon_path_svg, data: {'toggle': 'modal', target: '#status-dot-modal'} %>
+</div>
+
+<% if signed_in? %>
+    <div class="modal fade" id="status-dot-modal" tabindex="-1" role="dialog" aria-labelledby="StatusDot">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="statusDotModalLabel">Status Dot</h4>
+          </div>
+          <div class="modal-body">
+            <em>Status dots</em> are awesome embeddable images which can be put anywhere to show your current service
+            status.<br/>
+            To embed it, just copy the URL below. <br/><br/>
+            SVG:
+            <pre><%= status_dot_url %></pre>
+            Markdown:
+            <pre>![<%= Statusify.app_name %> Status](<%= status_dot_url %>)</pre>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

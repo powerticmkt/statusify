@@ -4,13 +4,7 @@
   <div class="incident-block col-sm-10">
     <p class="incident-date"><span class="inner-date"><%= @incident.updated_at.strftime('%e %b, %Y') %></span></p>
 
-          <span class="incident-name text-<%= @incident.convert_to_level %>"><%= @incident.name %>
-
-            <% if signed_in? && @incident.active? %><%= link_to link_to_incident(@incident.id, 'deactivate') do %>
-                <button class="btn btn-success deactivate-button btn-xs admin-button">Deactivate incident</button>
-            <% end %>
-          <% end %>
-          </span>
+          <span class="incident-name text-<%= @incident.convert_to_level %>"><%= @incident.name %></span>
 
     <span class="incident-component text-<%= @incident.convert_to_level %>"><%= @incident.component %></span>
 

@@ -44,11 +44,11 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     get "/incidents/#{Incident.first.id}/edit"
     assert_response :success, 'Could not get edit page'
     # Edit incident with valid parameters
-    i = { name: 'Updated name', message: 'updated message', status: 'updated status', component: 'Updated component', severity: 'major' }
+    i = {name: 'Updated name', message: 'updated message', status: 'updated status', component: 'Updated component', severity: 'major'}
     r = edit_incident(i, "/incidents/#{Incident.first.id}/edit")
     assert_equal 'success', r.headers['status'], 'Could not edit valid incident'
     # Edit incident with invalid parameters
-    i = { name: '', message: '', status: '', component: '', severity: '' }
+    i = {name: '', message: '', status: '', component: '', severity: ''}
     r = edit_incident(i, "/incidents/#{Incident.first.id}/edit")
     assert_equal 'failed', r.headers['status'], 'Could edit invalid incident'
   end
@@ -75,6 +75,21 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     assert_equal nil, flash['warning']
     r = get "/incidents/#{(rand * 10_000).to_i}"
     assert_equal 'Unable to find that incident', flash['warning']
+  end
+
+  test 'status dot check' do
+    sign_in('u@umangis.me', 'password')
+    get '/status.svg'
+    assert_redirected_to "#{Statusify.app_url}/down.svg", 'Redirected to unknown path, had active incidents.'
+    # Deactivate all incidents.
+    Incident.where(active: true).each do |m|
+      m.user = User.first
+      m.active = false
+      m.save!
+    end
+    # Should redirect us to the 'up' SVG.
+    get '/status.svg'
+    assert_redirected_to "#{Statusify.app_url}/up.svg", 'Redirected to unknown path, had inactive incidents only.'
   end
 
   def sign_in(email, password)

@@ -9,8 +9,7 @@
           <div class="alert alert-danger" id="status-summary">Some systems down!</div>
       <% end %>
 
-      <div class="col-sm-2"></div>
-      <div class="col-sm-8" id="incidents">
+      <div id="incidents">
         <div id="active-incidents">
           <%= render :partial => 'pages/incidents', locals: {active: true, incidents: active_incidents} %>
         </div>
@@ -21,5 +20,5 @@
       </div>
 
     </div>
-    <div class="col-sm-2"></div>
+    <div class="col-sm-1"></div>
 <% end %>
