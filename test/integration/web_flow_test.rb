@@ -6,25 +6,17 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     assert_response :success, 'Failed to get index page'
   end
 
-  test 'sign up' do
-    get '/sign_up'
-    assert_response :success, 'Failed to get sign up page'
-    post_via_redirect '/users', 'user[email]' => 'a@b.com', 'user[password]' => 'password'
-    assert_response :success
-    assert_equal 'a@b.com', User.find_by_email('a@b.com').email, 'Created user and expected user do not match.'
-  end
-
   test 'sign in' do
-    get '/sign_in'
+    get '/users/sign_in'
     assert_response :success, 'Failed to get sign in page'
     # Checking with valid credentials
     sign_in(User.first.email, 'password')
-    assert_response :success, 'Failed to log in in via valid credentials.'
+    assert_equal flash[:notice], 'Signed in successfully.', 'Failed to log in in via valid credentials.'
     # Sign out
-    delete '/sign_out'
+    delete '/users/sign_out'
     # Checking with invalid credentials
     sign_in(User.first.email, 'foobar')
-    assert_response :unauthorized, 'Invalid credentials work.'
+    assert_equal 'Invalid email or password.', flash[:alert]
   end
 
   test 'create incident' do
@@ -93,7 +85,7 @@ class WebFlowTest < ActionDispatch::IntegrationTest
   end
 
   def sign_in(email, password)
-    post_via_redirect '/session', 'session[email]' => email, 'session[password]' => password
+    post_via_redirect '/users/sign_in', 'user[email]' => email, 'user[password]' => password
     response
   end
 

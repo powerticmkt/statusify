@@ -30,8 +30,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Bootstrap framework
 gem 'bootstrap-sass', '~> 3.3.5'
 
-# Clearance, handles auth
-gem 'clearance'
+# Devise, handles auth
+gem 'devise'
 
 # Sidekiq, jobs processing
 gem 'sidekiq'

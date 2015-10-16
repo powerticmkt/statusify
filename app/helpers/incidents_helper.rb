@@ -6,7 +6,7 @@ module IncidentsHelper
 
   def visible_incidents
     @visible_incidents = []
-    if signed_in?
+    if user_signed_in?
       @visible_incidents = all_incidents.to_a
     else
       all_incidents.each do |i|

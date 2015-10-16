@@ -1,4 +1,4 @@
-<% if signed_in? %>
+<% if user_signed_in? %>
     <%= link_to link_to_incident(incident.id, 'edit') do %>
         <button class="btn btn-warning btn-sm admin-button">Update Incident</button>
     <% end %>

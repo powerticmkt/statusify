@@ -4,7 +4,7 @@
         <% if incidents && incidents.any? %>
             <% incidents.each do |i| %>
                 <% if !i.blank? && visible(i) %>
-                    <% cache_if !signed_in?, i do %>
+                    <% cache_if !user_signed_in?, i do %>
                         <div class="incident-block">
                           <%= link_to link_to_incident(i.id, 'view') do %>
                           <span class="incident-name text-<%= i.convert_to_level %>"><%= i.name %></span><% end %><span class="incident-component text-<%= i.convert_to_level %>"><%= i.component %></span>

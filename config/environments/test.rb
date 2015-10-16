@@ -40,9 +40,6 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  # Use Clearance backdoor
-  config.middleware.use Clearance::BackDoor
-
   # Enable stdout logger
   config.logger = Logger.new(STDOUT)
 

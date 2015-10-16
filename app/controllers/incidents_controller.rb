@@ -1,6 +1,6 @@
 class IncidentsController < ApplicationController
   skip_before_filter :verify_authenticity_token if ENV['STRESS-TEST']
-  before_action :require_login, except: [:view]
+  before_action :authenticate_user!, except: [:view]
 
   def new
     @incident ||= current_user.incidents.new
@@ -80,7 +80,7 @@ class IncidentsController < ApplicationController
       redirect_to root_path
       flash[:warning] = 'Unable to find that incident'
     else
-      if @incident.public? || signed_in?
+      if @incident.public? || user_signed_in?
         render 'incidents/view'
       else
         redirect_to root_path

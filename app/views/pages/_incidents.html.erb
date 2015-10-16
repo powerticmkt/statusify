@@ -7,7 +7,7 @@
 
 
 <% incidents.first(count).each do |i| %>
-    <% cache_if(!signed_in?, i) do %>
+    <% cache_if(!user_signed_in?, i) do %>
         <div class="incident-block">
           <p class="incident-date"><span class="inner-date"><%= i.updated_at.strftime('%e %b, %Y') %></span></p>
 
@@ -22,7 +22,7 @@
                @inverted = false
             %>
             <% all_events(i).each do |e| %>
-                <% cache_if !signed_in?, e do %>
+                <% cache_if !user_signed_in?, e do %>
                     <li class="<%= timeline_class(@inverted) %>">
                       <div class="timeline-panel">
                         <div class="event-title timeline-title"><%= e.status %></div>

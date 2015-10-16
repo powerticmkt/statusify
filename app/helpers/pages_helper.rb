@@ -6,7 +6,7 @@ module PagesHelper
   end
 
   def visible(incident)
-    incident.public? || signed_in?
+    incident.public? || user_signed_in?
   end
 
   def timeline_class(current)

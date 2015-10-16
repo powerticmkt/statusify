@@ -22,16 +22,16 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <% if signed_in? %>
+        <% if user_signed_in? %>
             <li>
               <%= link_to('New incident', '/incidents/new') %>
             </li>
             <li>
-              <%= link_to('Sign out', '/signout') %>
+              <%= link_to('Sign out', '/users/sign_out', method: :delete) %>
             </li>
         <% else %>
             <li>
-              <%= link_to('Sign in', '/sign_in') %>
+              <%= link_to('Sign in', '/users/sign_in') %>
             </li>
         <% end %>
       </ul>

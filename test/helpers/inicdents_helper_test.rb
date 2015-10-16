@@ -5,7 +5,7 @@ class IncidentsHelperTest < ActionView::TestCase
   # cuz even it might make things blow up big-time.
   include ApplicationHelper
 
-  def signed_in?
+  def user_signed_in?
     # Just a senseless stub that makes the visible incidents test work.
     false
   end
