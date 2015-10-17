@@ -13,4 +13,13 @@ Rails.application.routes.draw do
   delete 'incidents/:id' => 'incidents#delete'
   get 'history' => 'pages#history'
   get 'status.svg' => 'pages#current_status_dot', as: 'status_dot'
+  # Begin API routes
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      namespace :incidents do
+        get '/' => 'incidents#index'
+        post '/' => 'incidents#index'
+      end
+    end
+  end
 end

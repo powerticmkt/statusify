@@ -4,9 +4,9 @@ module IncidentsHelper
     Incident.all.order('updated_at DESC')
   end
 
-  def visible_incidents
+  def visible_incidents(show_private = user_signed_in?)
     @visible_incidents = []
-    if user_signed_in?
+    if show_private
       @visible_incidents = all_incidents.to_a
     else
       all_incidents.each do |i|

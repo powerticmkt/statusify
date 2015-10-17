@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016105406) do
+ActiveRecord::Schema.define(version: 20151016132417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20151016105406) do
   create_table "incidents", force: :cascade do |t|
     t.string   "name"
     t.string   "component"
-    t.string   "status"
     t.boolean  "public",     default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
@@ -78,6 +77,7 @@ ActiveRecord::Schema.define(version: 20151016105406) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "api_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

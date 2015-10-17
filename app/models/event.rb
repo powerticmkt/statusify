@@ -12,4 +12,9 @@ class Event < ActiveRecord::Base
     end
     true
   end
+
+  def as_json(options = {})
+    options[:except] = [:id, :incident_id]
+    super(options)
+  end
 end

@@ -3,7 +3,7 @@ class IncidentsController < ApplicationController
   before_action :authenticate_user!, except: [:view]
 
   def new
-    @incident ||= current_user.incidents.new
+    @incident = current_user.incidents.new
     @incident.events.build
   end
 
