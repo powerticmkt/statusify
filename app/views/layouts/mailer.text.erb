@@ -1,0 +1,7 @@
+<%= yield %>
+
+-------------------
+<% if @activation_key %>
+    <% unsubscribe_path = Statusify.app_url + '/subscribers/unsubscribe/' + @activation_key %>
+    Go to <%= unsubscribe_path %> to unsubscribe from these mails.
+<% end %>

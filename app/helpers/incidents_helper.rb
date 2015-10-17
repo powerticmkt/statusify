@@ -33,12 +33,10 @@ module IncidentsHelper
   end
 
   def all_events(incident)
-    return unless incident.is_a? Incident
     all_events ||= incident.events.order('updated_at DESC')
   end
 
   def last_event(incident)
-    return unless incident.is_a? Incident
     last_event ||= all_events(incident).first
   end
 

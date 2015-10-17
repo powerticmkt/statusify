@@ -1,0 +1,19 @@
+<div id="incident-page">
+  <div class="incident-block">
+    <p class="incident-date"><span class="inner-date"><% @incident.updated_at.strftime('%e %b, %Y') %></span></p>
+
+    <span class="incident-name text-<%= @incident.convert_to_level %>"><%= @incident.name %></span>
+
+    <span class="incident-component text-<%= @incident.convert_to_level %>"><%= @incident.component %></span>
+
+    <% @event = Event.where(:incident_id == @incident.id).last %>
+
+    <hr class="event-hr"/>
+    <p class="incident-description"><b><%= @event.status %></b>&nbsp; - &nbsp;<%= @event.message %></p>
+
+    <p class="incident-updated-at"><%= @event.updated_at.strftime('%b %e, %H:%M %Z') %></p>
+
+  </div>
+</div>
+
+<p class="text-muted" align="center"><a href="<%= Statusify.app_url + '/incidents/' + @incident.id.to_s %>">View this incident on the status page.</a></p>

@@ -10,6 +10,10 @@
       "required":true,
       "description": "The name of your application."
     },
+    "APP_URL": {
+      "required": true,
+      "description": "The URL on which you're running Statusify."
+    },
     "CUSTOM_RUBY_VERSION":{
       "required":false,
       "value": "2.2.3",
@@ -40,6 +44,7 @@
   "addons":[
     "heroku-postgresql",
     "heroku-redis",
-    "memcachier"
+    "memcachier",
+    "sendgrid"
   ]
 }

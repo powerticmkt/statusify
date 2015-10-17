@@ -63,4 +63,10 @@ group :development, :test do
 
   # Coveralls, code coverage
   gem 'coveralls', require: false
+
+  # Don't spam mails while developing
+  gem 'letter_opener'
+
+  # Sidekiq web needs sinatra
+  gem 'sinatra'
 end

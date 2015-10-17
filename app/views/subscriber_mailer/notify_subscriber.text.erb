@@ -1,0 +1,18 @@
+<%= @new ? "#{Statusify.app_name} has a new incident" : "There's an update to #{Statusify.app_name}'s status." %>
+=======================================================
+
+<%= @incident.name %>
+
+Component affected: <%= @incident.component %>
+
+<% @event = Event.where(:incident_id == @incident.id).last %>
+
+<%= @event.updated_at.strftime('%b %e, %H:%M %Z') %>
+----------------------------------------------
+Current status: <%= @event.status %>
+----------------------------------------------
+<%= @event.message %>
+
+-------------------
+View this incident on the status page: <%= Statusify.app_url + '/incidents/' + @incident.id.to_s %>
+-------------------
