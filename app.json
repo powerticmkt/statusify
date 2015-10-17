@@ -1,6 +1,7 @@
 {
   "name":"Statusify",
   "description":"Statusify is a web-application status app, written entirely in Ruby on Rails.",
+  "logo": "https://umangis.me/public/images/statusify-logo.png",
   "scripts":{
     "postdeploy":"bundle exec rake db:setup"
   },

@@ -28,7 +28,9 @@ class IncidentsHelperTest < ActionView::TestCase
     @current_user = nil
     @visible_incidents = visible_incidents
     assert_equal Incident, @visible_incidents.first.class, 'visible_incidents is not returning incidents.'
-    assert_equal true, @visible_incidents.first.public?, 'Showing private incidents.'
+    @visible_incidents.each do |i|
+      assert_equal true, i.public?
+    end
   end
 
 end

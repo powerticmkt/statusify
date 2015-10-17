@@ -104,6 +104,21 @@ class WebFlowTest < ActionDispatch::IntegrationTest
     assert_equal 'Invalid URL. Please try again.', flash[:danger], 'Unsubscribed using an invalid key.'
   end
 
+test 'status dot check' do
+    sign_in('u@umangis.me', 'password')
+    get '/status.svg'
+    assert_redirected_to "#{Statusify.app_url}/down.svg", 'Redirected to unknown path, had active incidents.'
+    # Deactivate all incidents.
+    Incident.where(active: true).each do |m|
+      m.user = User.first
+      m.active = false
+      m.save!
+    end
+    # Should redirect us to the 'up' SVG.
+    get '/status.svg'
+    assert_redirected_to "#{Statusify.app_url}/up.svg", 'Redirected to unknown path, had inactive incidents only.'
+  end
+
   def sign_in(email, password)
     post_via_redirect '/session', 'session[email]' => email, 'session[password]' => password
     response

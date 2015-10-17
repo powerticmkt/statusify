@@ -22,3 +22,8 @@ jQuery(document).ready(function(){
         jQuery('.flash').toggle('show');
     });
 });
+
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});

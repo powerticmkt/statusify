@@ -2,6 +2,13 @@
 <html>
 <head>
   <title><%= full_title %></title>
+  <% # Favicon that reflects the current service status
+     @favicon_path_svg = active_incidents.blank? ? "#{Statusify.app_url}/up.svg" : "#{Statusify.app_url}/down.svg"
+     @favicon_path_png = active_incidents.blank? ? "#{Statusify.app_url}/up.png" : "#{Statusify.app_url}/down.png"
+  %>
+  <!-- Some browsers may not support SVG favicons. Give them PNGs -->
+  <%= favicon_link_tag(@favicon_path_png) %>
+  <%= favicon_link_tag(@favicon_path_svg) %>
   <%= render :partial => 'shared/head' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
