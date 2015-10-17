@@ -16,7 +16,7 @@ class IncidentsController < ApplicationController
       response.headers['status'] = 'success'
       DatedIncidentsWorker.perform_async
       # Notify subscribers of a new incident
-      NotifySubscriberWorker.perform_async(@incident.id, true)
+      NotifySubscriberWorker.perform_async(@incident.id, true) if @incident.public?
     else
       response.headers['status'] = 'failed'
       render 'incidents/new'
@@ -27,7 +27,7 @@ class IncidentsController < ApplicationController
     @incident ||= Incident.find_by_id(params[:id])
     @event = Event.find_by_incident_id(params[:id])
     redirect_to root_path if @incident.nil?
-    DatedIncidentsWorker.perform_async
+    DatedIncidentsWorker.perform_async if @incident.public?
   end
 
   def update
@@ -45,7 +45,7 @@ class IncidentsController < ApplicationController
       flash[:success] = 'Incident updated successfully.'
       redirect_to root_path
       DatedIncidentsWorker.perform_async
-      NotifySubscriberWorker.perform_async(@incident.id)
+      NotifySubscriberWorker.perform_async(@incident.id) if @incident.public?
     else
       response.headers['status'] = 'failed'
       flash[:danger] = 'Please fill all entries.'
