@@ -3,7 +3,6 @@
 incident_<%= n %>:
   name: 'Incident name'
   component: 'API'
-  status: 'Down'
   public: true
   active: true
   severity: major
@@ -11,7 +10,6 @@ incident_<%= n %>:
 incident_<%= n + 1000 %>:
   name: 'Other incident name'
   component: 'Web App'
-  status: 'Investigating'
   public: false
   active: true
   severity: minor
