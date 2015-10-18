@@ -5,8 +5,8 @@ module PagesHelper
     "incidents/all-#{count}-#{max_updated_at}"
   end
 
-  def visible(incident)
-    incident.public? || user_signed_in?
+  def visible(incident, show_private = user_signed_in?)
+    incident.public? || show_private
   end
 
   def timeline_class(current)
