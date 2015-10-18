@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008151936) do
+ActiveRecord::Schema.define(version: 20151018143607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,9 @@ ActiveRecord::Schema.define(version: 20151008151936) do
     t.string   "severity"
   end
 
+  add_index "incidents", ["active"], name: "index_incidents_on_active", using: :btree
+  add_index "incidents", ["created_at"], name: "index_incidents_on_created_at", using: :btree
+  add_index "incidents", ["id"], name: "index_incidents_on_id", using: :btree
   add_index "incidents", ["user_id"], name: "index_incidents_on_user_id", using: :btree
 
   create_table "subscribers", force: :cascade do |t|
@@ -63,6 +66,8 @@ ActiveRecord::Schema.define(version: 20151008151936) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end
+
+  add_index "subscribers", ["activated"], name: "index_subscribers_on_activated", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                                     null: false
