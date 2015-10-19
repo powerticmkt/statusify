@@ -1,5 +1,4 @@
 class SubscribersController < ApplicationController
-
   def create
     # Create the subscriber
     subscriber = Subscriber.new(subscriber_params)
@@ -22,7 +21,7 @@ class SubscribersController < ApplicationController
       subscriber.save
       flash[:success] = "You will now receive all updates at #{subscriber.email}."
     else !subscriber
-      flash[:danger] = 'Invalid activation key'
+         flash[:danger] = 'Invalid activation key'
     end
     redirect_to root_path
   end
@@ -37,7 +36,7 @@ class SubscribersController < ApplicationController
     else
       flash[:danger] = 'Invalid URL. Please try again.'
     end
-  redirect_to root_path
+    redirect_to root_path
   end
 
   private

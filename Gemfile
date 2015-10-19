@@ -1,9 +1,7 @@
 source 'https://rubygems.org'
 
 # Custom Ruby version, CI checks remain unaffected.
-if ENV['CUSTOM_RUBY_VERSION']
-  ruby ENV['CUSTOM_RUBY_VERSION']
-end
+ruby ENV['CUSTOM_RUBY_VERSION'] if ENV['CUSTOM_RUBY_VERSION']
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -68,7 +66,7 @@ group :development, :test do
   gem 'spring'
   # Coveralls, code coverage
   gem 'coveralls', require: false
-  gem "rspec-rails"
+  gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'guard-rails', require: false
   gem 'guard-rspec', require: false
@@ -77,6 +75,6 @@ group :development, :test do
 end
 
 group :test do
-  gem "capybara"
-  gem "factory_girl_rails", "~> 4.5"
+  gem 'capybara'
+  gem 'factory_girl_rails', '~> 4.5'
 end

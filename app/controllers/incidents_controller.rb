@@ -37,7 +37,7 @@ class IncidentsController < ApplicationController
     @incident.component = incident_params[:component]
     @incident.severity = incident_params[:severity]
     @incident.public = incident_params[:public]
-    event_params = {message: incident_params[:event][:message], status: incident_params[:event][:status]}
+    event_params = { message: incident_params[:event][:message], status: incident_params[:event][:status] }
     @event = @incident.events.build(event_params)
     incident_saved = @incident.save
     if incident_saved || @event.save

@@ -6,7 +6,7 @@ class SubscriberMailer < ApplicationMailer
     mail to: subscriber.email, subject: "Please confirm your subscription for #{Statusify.app_name}'s incidents."
   end
 
-  def notify_subscriber(subscriber, incident_id, new=false)
+  def notify_subscriber(subscriber, incident_id, new = false)
     # The 'new' parameter is true when we have a new incident
     @incident = Incident.find_by_id(incident_id)
     @activation_key = subscriber.activation_key

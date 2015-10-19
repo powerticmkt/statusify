@@ -6,7 +6,7 @@ class Incident < ActiveRecord::Base
 
   belongs_to :user
   has_many :events, dependent: :destroy
-  validates :name, presence: true, length: {maximum: 256}
+  validates :name, presence: true, length: { maximum: 256 }
   validates_presence_of :component
   validates_presence_of :user_id
   validates_presence_of :severity
@@ -16,12 +16,11 @@ class Incident < ActiveRecord::Base
   def convert_to_level
     # Converts incident severity to bootstrap color, for use with text-<level>
     # Like text-danger, text-warning
-    case self.severity
-      when 'major'
-        'danger'
-      when 'minor'
-        'warning'
+    case severity
+    when 'major'
+      'danger'
+    when 'minor'
+      'warning'
     end
   end
-
 end

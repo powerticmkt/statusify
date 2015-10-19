@@ -5,16 +5,14 @@ module ApplicationHelper
     # Generates a link to the specified action.
     base = "/incidents/#{id}/"
     case action
-      when 'view'
-        base + ''
-      when 'edit'
-        base + 'edit'
-      when 'deactivate'
-        base + 'deactivate'
-      when 'delete'
-        base + 'delete'
-      else
-        nil
+    when 'view'
+      base + ''
+    when 'edit'
+      base + 'edit'
+    when 'deactivate'
+      base + 'deactivate'
+    when 'delete'
+      base + 'delete'
     end
   end
 
