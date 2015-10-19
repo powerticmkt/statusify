@@ -57,19 +57,21 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: :mri
-
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
   # Coveralls, code coverage
   gem 'coveralls', require: false
+  gem "rspec-rails"
+  gem 'spring-commands-rspec'
+  gem 'guard-rails', require: false
+  gem 'guard-rspec', require: false
+  gem 'rb-fsevent' if `uname` =~ /Darwin/
+  gem 'better_errors'
+end
 
-  # Don't spam mails while developing
-  gem 'letter_opener'
-
-  # Sidekiq web needs sinatra
-  gem 'sinatra'
+group :test do
+  gem "capybara"
+  gem "factory_girl_rails", "~> 4.5"
 end
