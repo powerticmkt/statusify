@@ -1,4 +1,4 @@
-<% status_dot_tooltip = signed_in? ? "This is your 'Status Dot'. Click it to get its URL." : "Current service status." %>
+<% status_dot_tooltip = signed_in? ? "This is your 'Status Dot'. Click it to get its URL." : "Current service status" %>
 
 <div id="status-dot" class="text-center" data-toggle="tooltip" data-placement="top" title="<%= status_dot_tooltip %>">
   <%= image_tag @favicon_path_svg, data: {'toggle': 'modal', target: '#status-dot-modal'} %>
