@@ -44,6 +44,11 @@ gem 'dalli'
 
 # Redcarpet, markdown support
 gem 'redcarpet'
+# Don't spam mails while developing
+gem 'letter_opener'
+
+# Sidekiq web needs sinatra
+gem 'sinatra'
 
 group :production do
   # Rails-12factor
