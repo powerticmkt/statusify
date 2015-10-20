@@ -25,12 +25,6 @@ class Incident < ActiveRecord::Base
     Event.where(incident_id: self.id).last.status
   end
 
-  def status=(status)
-    # Setter, raises exception.
-    raise "Can't set incident status directly. Use an event to do that."
-  end
-
-
   def convert_to_level
     # Converts incident severity to bootstrap color, for use with text-<level>
     # Like text-danger, text-warning

@@ -19,6 +19,9 @@ Rails.application.routes.draw do
       namespace :incidents do
         get '/' => 'incidents#index'
         post '/' => 'incidents#index'
+        post '/create' => 'incidents#create'
+        get '/:id' => 'incidents#view'
+        post '/:id' => 'incidents#view'
       end
     end
   end
