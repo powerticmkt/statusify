@@ -9,7 +9,7 @@
     <%= f.label(:severity, 'Incident severity:') %>
     <%= f.select :severity, options_for_select([['Major', 'major'], ['Minor', 'minor']]) %>
     <%= f.fields_for :events do |ff| %>
-    <%= ff.text_area :message, placeholder: 'Message to users', :class => 'form-control' %>
+    <%= ff.text_area :message, placeholder: 'Message to users', :class => 'form-control', data: {placement: 'top', toggle: 'tooltip'}, title: 'Markdown supported.' %>
     <%= ff.text_field :status, placeholder: 'Current status', class: 'form-control' %>
     <% end %>
     <%= f.label(:public, 'Public:') %> <%= f.check_box(:public, class: 'custom-checkbox') %>

@@ -42,6 +42,9 @@ gem 'jquery-turbolinks'
 # Memcached, for caching
 gem 'dalli'
 
+# Redcarpet, markdown support
+gem 'redcarpet'
+
 group :production do
   # Rails-12factor
   gem 'rails_12factor'
