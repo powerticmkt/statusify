@@ -10,7 +10,7 @@
                           <span class="incident-name text-<%= i.convert_to_level %>"><%= i.name %></span><% end %><span class="incident-component text-<%= i.convert_to_level %>"><%= i.component %></span>
                           <% e = i.events.last %>
                           <hr class="event-hr"/>
-                          <p class="incident-description"><b><%= e.status %></b>- &nbsp;<%= e.message %></p>
+                          <p class="incident-description"><b><%= e.status %></b>- &nbsp;<%= markdown(e.message) %></p>
 
                           <p class="incident-updated-at"><%= e.updated_at.strftime('%b %e, %H:%M %Z') %></p>
 
