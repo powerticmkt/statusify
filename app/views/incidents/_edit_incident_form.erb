@@ -2,15 +2,15 @@
 <%= render partial: 'shared/error_messages' %>
 
 <%= form_for @incident, url: {id: @incident.id} do |f| %>
-    <%= f.text_field :name, input_html: {value: @incident.name}, :class => 'form-control'%>
+    <%= f.text_field :name, input_html: {value: @incident.name}, :class => 'form-control' , data: {placement: 'top', toggle: 'tooltip'}, title: 'Incident name'%>
 		<br />
-    <%= f.text_field :component, input_html: {value: @incident.component}, :class => 'form-control'%>
+    <%= f.text_field :component, input_html: {value: @incident.component}, :class => 'form-control', data: {placement: 'top', toggle: 'tooltip'}, title: 'Component affected'%>
     <br />
     <%= f.label(:severity, 'Incident severity:') %>
     <%= f.select :severity, options_for_select([%w[Major major], %w[Minor minor]], selected = @incident.severity) %>
     <%= f.fields_for :event do |ff| %>
-        <%= ff.text_area :message, value: @event.message, :class => 'form-control' %>
-        <%= ff.text_field :status, value: @event.status, :class => 'form-control' %>
+        <%= ff.text_area :message, value: @event.message, :class => 'form-control', data: {placement: 'top', toggle: 'tooltip'}, title: 'Message. Markdown supported.' %>
+        <%= ff.text_field :status, value: @event.status, :class => 'form-control', data: {placement: 'top', toggle: 'tooltip'}, title: 'Current status' %>
     <% end %>
     <%= f.label(:public, 'Public:') %> <%= f.check_box(:public, checked: @incident.public?) %>
     <br />
