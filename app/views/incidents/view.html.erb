@@ -10,7 +10,7 @@
 
     <% all_events(@incident).each do |e| %>
         <hr class="event-hr"/>
-        <p class="incident-description"><b><%= e.status %></b>- &nbsp;<%= markdown(e.message) %></p>
+        <p class="incident-description"><b><%= markdown(e.status) %></b>- &nbsp;<%= markdown(e.message) %></p>
 
         <p class="incident-updated-at"><%= e.updated_at.strftime('%b %e, %H:%M %Z') %></p>
     <% end %>
