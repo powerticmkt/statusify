@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/ndea/regressor.git
+  revision: ba096bddf764369bf684b11959813e9dea1373ce
+  branch: master
+  specs:
+    regressor (0.6.0)
+      faker (~> 1.3)
+      rails (~> 4.0)
+      shoulda-matchers (~> 2.7.0, >= 2.7.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -110,6 +120,8 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    faker (1.5.0)
+      i18n (~> 0.5)
     ffi (1.9.10)
     formatador (0.2.5)
     globalid (0.3.6)
@@ -162,6 +174,10 @@ GEM
     mime-types (2.6.2)
     mini_portile (0.6.2)
     minitest (5.8.1)
+    minitest_to_rspec (0.7.0)
+      ruby_parser (~> 3.7)
+      sexp2ruby (~> 0.0.3)
+      trollop (~> 2.1)
     multi_json (1.11.2)
     nenv (0.2.0)
     netrc (0.10.3)
@@ -245,6 +261,8 @@ GEM
       rspec-mocks (~> 3.3.0)
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
+    ruby_parser (3.7.1)
+      sexp_processor (~> 4.1)
     sass (3.4.18)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -257,7 +275,13 @@ GEM
       rdoc (~> 4.0)
     sidekiq (3.5.1)
       celluloid (~> 0.17.2)
+    sexp2ruby (0.0.3)
+      activesupport (~> 4.2)
+      sexp_processor (~> 4.6)
+    sexp_processor (4.6.0)
     shellany (0.0.1)
+    shoulda-matchers (2.7.0)
+      activesupport (>= 3.0.0)
     sidekiq (3.5.0)
       celluloid (~> 0.17.0)
       connection_pool (~> 2.2, >= 2.2.0)
@@ -293,6 +317,7 @@ GEM
     timers (4.1.1)
       hitimes
     tins (1.6.0)
+    trollop (2.1.2)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -330,15 +355,18 @@ DEPENDENCIES
   jquery-rails (~> 4.0.5)
   jquery-turbolinks
   letter_opener
+  minitest_to_rspec
   pg (~> 0.18.3)
   puma (~> 2.14)
   rails (= 4.2.4)
   rails_12factor
   redcarpet
   rb-fsevent
+  regressor!
   rspec-rails
   sass-rails (~> 5.0.4)
   sdoc (~> 0.4.0)
+  shoulda-matchers
   sidekiq
   sinatra
   skylight

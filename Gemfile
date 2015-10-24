@@ -47,6 +47,9 @@ gem 'letter_opener'
 
 # Sidekiq web needs sinatra
 gem 'sinatra'
+gem 'minitest_to_rspec'
+gem 'regressor', git: 'https://github.com/ndea/regressor.git', branch: 'master'
+gem 'shoulda-matchers'
 
 group :production do
   # Rails-12factor
