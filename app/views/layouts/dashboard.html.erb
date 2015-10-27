@@ -19,7 +19,15 @@
 <%= render :partial => 'shared/navigation' %>
 <%= render :partial => 'shared/flash' %>
 
-<%= yield %>
+<ul class="col-md-2 col-sm-12 col-xs-12 dashboard-buttons">
+  <li id="new-incident-btn"><%= link_to new_incident_path do %><i class="fa fa-exclamation-triangle fa-5x"></i><br />New Incident<% end %></li>
+  <li id="history-btn"><%= link_to history_path do %><i class="fa fa-history fa-5x"></i><br />Incident History<% end %></li>
+</ul>
+
+<div class="col-md-10 col-sm-12 col-xs-12">
+  <h1 align="center">Dashboard</h1>
+  <%= yield %>
+</div>
 
 <%= render :partial => 'shared/footer' %>
 </body>

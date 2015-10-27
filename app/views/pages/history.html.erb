@@ -1,9 +1,18 @@
 <% provide(:title, 'Incident History') %>
 
-<div class="col-sm-2"></div>
-<div class="col-sm-8">
-<h1 class="text-center">Incident history</h1>
+<% if !signed_in? %>
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <h1 class="text-center">Incident history</h1>
+    <hr id="top-hr" />
+    <%= render :partial => 'pages/history' %>
+  </div>
+  <div class="col-sm-2"></div>
+<% else %>
+  <h3 class="text-center">Incident history</h1>
   <hr id="top-hr" />
   <%= render :partial => 'pages/history' %>
-</div>
-<div class="col-sm-2"></div>
+<% end %>
+<script>
+  $('#history-btn').addClass('active');
+</script>
