@@ -5,6 +5,7 @@ class IncidentsController < ApplicationController
   def new
     @incident ||= current_user.incidents.new
     @incident.events.build
+    render layout: 'dashboard'
   end
 
   def create
@@ -27,7 +28,7 @@ class IncidentsController < ApplicationController
     @incident ||= Incident.find_by_id(params[:id])
     @event = Event.find_by_incident_id(params[:id])
     redirect_to root_path if @incident.nil?
-    DatedIncidentsWorker.perform_async if @incident.public?
+    render layout: 'dashboard'
   end
 
   def update

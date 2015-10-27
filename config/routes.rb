@@ -2,7 +2,7 @@
 Rails.application.routes.draw do
   root 'pages#index'
   get 'incidents' => 'pages#index'
-  get 'incidents/new' => 'incidents#new'
+  get 'incidents/new' => 'incidents#new', as: 'new_incident'
   get 'incidents/:id' => 'incidents#view'
   get 'incidents/:id/deactivate' => 'incidents#deactivate'
   get 'incidents/:id/edit' => 'incidents#edit'
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   patch 'incidents/:id/edit' => 'incidents#update'
   delete 'incidents/:id' => 'incidents#delete'
   get 'signout' => 'clearance/sessions#destroy'
-  get 'history' => 'pages#history'
+  get 'history' => 'pages#history', as: 'history'
   get 'status.svg' => 'pages#current_status_dot', as: 'status_dot'
   post 'subscribers/new' => 'subscribers#create', as: 'create_subscriber'
   get 'subscribers/activate/:activation_key' => 'subscribers#activate', as: 'activate_subscriber'

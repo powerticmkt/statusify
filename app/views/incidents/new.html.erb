@@ -1,7 +1,7 @@
 <% provide(:title, 'New Incident') %>
-<h1 align="center">Dashboard</h1>
-<div class="col-lg-2"></div>
-<div id="incident-new" class="col-lg-8">
+<div id="incident-new">
     <%= render :partial => 'incidents/new_incident_form' %>
 </div>
-<div class="col-lg-2"></div>
+<script>
+  $('#new-incident-btn').addClass('active');
+</script>
