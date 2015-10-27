@@ -9,5 +9,5 @@ class ApplicationController < ActionController::Base
   include BackPorts
   # Require our workers
   # Platform independent, should work even on Windows.
-  Dir[File.join(File.dirname(__FILE__), '..', 'workers', '*.rb')].each {|file| require file }
+  Dir[File.join(File.dirname(__FILE__), '..', 'workers', '*.rb')].each { |file| require file }
 end

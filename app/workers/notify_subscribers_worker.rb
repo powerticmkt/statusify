@@ -1,7 +1,7 @@
 class NotifySubscriberWorker
   include Sidekiq::Worker
 
-  def perform(incident_id, new=false)
+  def perform(incident_id, new = false)
     # Notify all activated subscribers when there's an update to an incident
     # Set new to true if there's a new incident
     @new = new

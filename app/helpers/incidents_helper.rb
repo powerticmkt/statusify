@@ -1,5 +1,4 @@
 module IncidentsHelper
-
   def all_incidents
     Incident.all.order('updated_at DESC')
   end
@@ -56,7 +55,7 @@ module IncidentsHelper
       # Minor check to make sure things don't blow up
       begins, ends = ends, begins if begins > ends
       range = begins..ends
-      @dated_incidents = Hash.new
+      @dated_incidents = {}
       range.each do |date|
         i = Incident.where(created_at: date.beginning_of_day..date.end_of_day)
         if !i.empty?
