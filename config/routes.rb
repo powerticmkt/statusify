@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   post 'subscribers/new' => 'subscribers#create', as: 'create_subscriber'
   get 'subscribers/activate/:activation_key' => 'subscribers#activate', as: 'activate_subscriber'
   get 'subscribers/unsubscribe/:activation_key' => 'subscribers#unsubscribe', as: 'unsubscribe_subscriber'
+  get 'users/new' => 'pages#new_user', as: 'new_user'
+  post 'users' => 'pages#create_user'
   if Rails.env == 'development'
     require 'sidekiq/web'
     mount Sidekiq::Web => '/sidekiq'
