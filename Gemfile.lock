@@ -402,7 +402,6 @@ DEPENDENCIES
   puma (~> 2.14)
   rails (= 4.2.4)
   rails_12factor
-  rb-fsevent
   redcarpet
   regressor!
   rspec-rails
