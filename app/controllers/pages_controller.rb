@@ -6,9 +6,7 @@ class PagesController < ApplicationController
     # The incident history. Shows all the ancient incidents since the index page shows only five of them.
     @dated_incidents = dated_incidents
     # Render the dashboard layout if signed in
-    if signed_in?
-      render 'pages/history', layout: 'dashboard'
-    end
+    render 'pages/history', layout: 'dashboard' if signed_in?
   end
 
   def current_status_dot

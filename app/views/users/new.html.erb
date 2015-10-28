@@ -1,12 +1,12 @@
-<% provide(:title, "Sign up") %>
-
-<div class="col-lg-2"></div>
-
-<div class="container container-fluid col-lg-8" style="margin-top: 5rem;">
-<%= form_for @user do |form| %>
-  <%= render :partial => '/users/form', :object => form %>
-  <%= form.submit 'Sign up', :data => {:disable_with => 'Please wait...'}, :class => 'btn btn-primary btn-submit' %>
+<h3 class="text-center">Create a user</h3>
+<%= form_for(@user) do |f| %>
+    <%= f.text_field :email, placeholder: "User's email address", class: 'form-control' %>
+    <%= f.password_field :password, placeholder: "User's password", class: 'form-control' %>
+    <%= f.password_field :password_confirmation, placeholder: "Password confirmation", class: 'form-control' %>
+    <%= f.label :admin, 'Is the user an admin?' %>
+    <%= f.check_box :admin %>
+    <%= f.submit 'Create user', class: 'btn btn-success btn-md', data: {deactive: 'Creating user&hellip;'} %>
 <% end %>
-</div>
-
-<div class="col-lg-2"></div>
+<script>
+  $('#users-btn').addClass('active');
+</script>
