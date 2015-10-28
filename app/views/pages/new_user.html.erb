@@ -1,9 +1,0 @@
-<h3 class="text-center">Create a user</h3>
-<%= form_for(@user) do |f| %>
-    <%= f.text_field :email, placeholder: "User's email address", class: 'form-control' %>
-    <%= f.password_field :password, placeholder: "User's password", class: 'form-control' %>
-    <%= f.password_field :password_confirmation, placeholder: "Password confirmation", class: 'form-control' %>
-    <%= f.label :admin, 'Is the user an admin?' %>
-    <%= f.check_box :admin %>
-    <%= f.submit 'Create user', class: 'btn btn-success btn-md', data: {deactive: 'Creating user&hellip;'} %>
-<% end %>
