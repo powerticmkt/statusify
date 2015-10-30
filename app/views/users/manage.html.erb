@@ -11,6 +11,15 @@
 </table>
 <br />
 <p align="center">Want to add someone? <%= link_to 'Create a user', new_user_path, class: 'btn btn-md btn-success' %></p>
+<% if current_user.email == 'example@example.com' %>
+  <p align="center">You are using the default user. This is not recommended. <br />
+    <% if User.count == 1 %>
+    Please create a new user.
+    <% else %>
+    <%= link_to 'Delete the default user.', "/users/#{User.first.id}", method: 'delete', class: 'btn btn-sm btn-success' %>
+    <% end %>
+  </p>
+<% end %>
 <script>
   $('#users-btn').addClass('active');
 </script>
