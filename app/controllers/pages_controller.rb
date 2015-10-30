@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def index
+    render layout: 'dashboard' if signed_in?
   end
 
   def history
