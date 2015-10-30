@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       flash[:danger] = @user.errors.full_messages.join(', ').capitalize
-      redirect_to new_user_path
+      redirect_to manage_users_path
     end
   end
 
