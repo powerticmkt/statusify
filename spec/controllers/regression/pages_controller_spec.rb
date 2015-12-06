@@ -13,5 +13,5 @@ RSpec.describe PagesController, regressor: true do
   it { is_expected.to use_after_filter(:abort_xdomain_redirect) }
   it { is_expected.to use_after_filter(:verify_same_origin_request) }
   # === Callbacks (Around) ===
-  
+
 end

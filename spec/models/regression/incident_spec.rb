@@ -4,7 +4,7 @@ RSpec.describe Incident, regressor: true do
 
   # === Relations ===
   it { is_expected.to belong_to :user }
-  
+
   it { is_expected.to have_many :events }
 
   # === Nested Attributes ===
@@ -39,10 +39,10 @@ RSpec.describe Incident, regressor: true do
   it { is_expected.to validate_presence_of :severity }
 
   # === Validations (Numericality) ===
-  
 
-  
+
+
   # === Enums ===
-  
-  
+
+
 end
