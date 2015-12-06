@@ -2,7 +2,7 @@
     <h2 class="text-center"><%= active ? 'Current' : 'Past' %> <%= 'incident'.pluralize(incidents.length) %></h2>
 <% end %>
 
-<%#	The number of incidents we're showing. %>
+<%#  The number of incidents we're showing. %>
 <% count = active ? Incident.count : 5 %>
 
 

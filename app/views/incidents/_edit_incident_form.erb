@@ -3,7 +3,7 @@
 
 <%= form_for @incident, url: {id: @incident.id} do |f| %>
     <%= f.text_field :name, input_html: {value: @incident.name}, :class => 'form-control' , data: {placement: 'top', toggle: 'tooltip'}, title: 'Incident name'%>
-		<br />
+    <br />
     <%= f.text_field :component, input_html: {value: @incident.component}, :class => 'form-control', data: {placement: 'top', toggle: 'tooltip'}, title: 'Component affected'%>
     <br />
     <%= f.label(:severity, 'Incident severity:') %>
