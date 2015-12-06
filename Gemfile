@@ -45,7 +45,6 @@ gem 'redcarpet'
 # Don't spam mails while developing
 gem 'letter_opener'
 
-
 # Sidekiq web needs sinatra
 gem 'sinatra'
 gem 'minitest_to_rspec'

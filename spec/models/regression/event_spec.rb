@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Event, regressor: true do
-
   # === Relations ===
   it { is_expected.to belong_to :incident }
 
@@ -16,7 +15,7 @@ RSpec.describe Event, regressor: true do
   it { is_expected.to have_db_column :updated_at }
 
   # === Database (Indexes) ===
-  it { is_expected.to have_db_index ["incident_id"] }
+  it { is_expected.to have_db_index ['incident_id'] }
 
   # === Validations (Length) ===
 
@@ -27,5 +26,4 @@ RSpec.describe Event, regressor: true do
   # === Validations (Numericality) ===
 
   # === Enums ===
-
 end

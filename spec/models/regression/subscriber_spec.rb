@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Subscriber, regressor: true do
-
   # === Relations ===
 
   # === Nested Attributes ===
@@ -15,7 +14,7 @@ RSpec.describe Subscriber, regressor: true do
   it { is_expected.to have_db_column :updated_at }
 
   # === Database (Indexes) ===
-  it { is_expected.to have_db_index ["activated"] }
+  it { is_expected.to have_db_index ['activated'] }
 
   # === Validations (Length) ===
 
@@ -25,5 +24,4 @@ RSpec.describe Subscriber, regressor: true do
   # === Validations (Numericality) ===
 
   # === Enums ===
-
 end

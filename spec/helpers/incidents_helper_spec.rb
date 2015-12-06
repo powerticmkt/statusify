@@ -1,7 +1,6 @@
-require "rails_helper"
+require 'rails_helper'
 
 describe IncidentsHelper do
-
   def signed_in?
     false
   end
@@ -13,7 +12,7 @@ describe IncidentsHelper do
   #   end
   # end
 
-  it "check all_incidents" do
+  it 'check all_incidents' do
     @incidents = all_incidents
     expect(@incidents.class).to eq(Incident::ActiveRecord_Relation)
   end

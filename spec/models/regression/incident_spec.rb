@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Incident, regressor: true do
-
   # === Relations ===
   it { is_expected.to belong_to :user }
 
@@ -23,10 +22,10 @@ RSpec.describe Incident, regressor: true do
   it { is_expected.to have_db_column :severity }
 
   # === Database (Indexes) ===
-  it { is_expected.to have_db_index ["active"] }
-  it { is_expected.to have_db_index ["created_at"] }
-  it { is_expected.to have_db_index ["id"] }
-  it { is_expected.to have_db_index ["user_id"] }
+  it { is_expected.to have_db_index ['active'] }
+  it { is_expected.to have_db_index ['created_at'] }
+  it { is_expected.to have_db_index ['id'] }
+  it { is_expected.to have_db_index ['user_id'] }
 
   # === Validations (Length) ===
   it { is_expected.to allow_value(Faker::Lorem.characters(256)).for :name }
@@ -41,5 +40,4 @@ RSpec.describe Incident, regressor: true do
   # === Validations (Numericality) ===
 
   # === Enums ===
-
 end

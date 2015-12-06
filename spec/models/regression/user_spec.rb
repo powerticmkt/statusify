@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, regressor: true do
-
   # === Relations ===
 
   it { is_expected.to have_many :incidents }
@@ -19,13 +18,13 @@ RSpec.describe User, regressor: true do
   it { is_expected.to have_db_column :admin }
 
   # === Database (Indexes) ===
-  it { is_expected.to have_db_index ["email"] }
-  it { is_expected.to have_db_index ["remember_token"] }
+  it { is_expected.to have_db_index ['email'] }
+  it { is_expected.to have_db_index ['remember_token'] }
 
   # === Validations (Length) ===
 
   # === Validations (Presence) ===
-  context "with conditions" do
+  context 'with conditions' do
     before do
       allow(subject).to receive(:email_optional?).and_return(false)
     end
@@ -33,7 +32,7 @@ RSpec.describe User, regressor: true do
     it { is_expected.to validate_presence_of :email }
   end
 
-  context "with conditions" do
+  context 'with conditions' do
     before do
       allow(subject).to receive(:skip_password_validation?).and_return(false)
     end
@@ -44,5 +43,4 @@ RSpec.describe User, regressor: true do
   # === Validations (Numericality) ===
 
   # === Enums ===
-
 end
