@@ -5,10 +5,7 @@ RSpec.describe Event, regressor: true do
   # === Relations ===
   it { is_expected.to belong_to :incident }
 
-
-
   # === Nested Attributes ===
-
 
   # === Database (Columns) ===
   it { is_expected.to have_db_column :id }
@@ -23,16 +20,12 @@ RSpec.describe Event, regressor: true do
 
   # === Validations (Length) ===
 
-
   # === Validations (Presence) ===
   it { is_expected.to validate_presence_of :message }
   it { is_expected.to validate_presence_of :status }
 
   # === Validations (Numericality) ===
 
-
-
   # === Enums ===
-
 
 end

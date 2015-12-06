@@ -4,11 +4,9 @@ RSpec.describe User, regressor: true do
 
   # === Relations ===
 
-
   it { is_expected.to have_many :incidents }
 
   # === Nested Attributes ===
-
 
   # === Database (Columns) ===
   it { is_expected.to have_db_column :id }
@@ -25,7 +23,6 @@ RSpec.describe User, regressor: true do
   it { is_expected.to have_db_index ["remember_token"] }
 
   # === Validations (Length) ===
-
 
   # === Validations (Presence) ===
   context "with conditions" do
@@ -44,12 +41,8 @@ RSpec.describe User, regressor: true do
     it { is_expected.to validate_presence_of :password }
   end
 
-
   # === Validations (Numericality) ===
 
-
-
   # === Enums ===
-
 
 end

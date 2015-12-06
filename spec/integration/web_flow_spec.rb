@@ -2,7 +2,6 @@
 
 # describe  do
 
-
 #   def sign_in(email, password)
 #     post_via_redirect("/session", "session[email]" => email, "session[password]" => password)
 #     response
@@ -23,7 +22,6 @@
 #     delete path
 #     response
 #   end
-
 
 #   it "get index" do
 #     get "/"

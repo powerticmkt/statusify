@@ -40,9 +40,6 @@ RSpec.describe Incident, regressor: true do
 
   # === Validations (Numericality) ===
 
-
-
   # === Enums ===
-
 
 end

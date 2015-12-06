@@ -4,11 +4,7 @@ RSpec.describe Subscriber, regressor: true do
 
   # === Relations ===
 
-
-
-
   # === Nested Attributes ===
-
 
   # === Database (Columns) ===
   it { is_expected.to have_db_column :id }
@@ -23,15 +19,11 @@ RSpec.describe Subscriber, regressor: true do
 
   # === Validations (Length) ===
 
-
   # === Validations (Presence) ===
   it { is_expected.to validate_presence_of :email }
 
   # === Validations (Numericality) ===
 
-
-
   # === Enums ===
-
 
 end
