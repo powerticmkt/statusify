@@ -16,7 +16,7 @@
     },
     "CUSTOM_RUBY_VERSION":{
       "required":false,
-      "value": "2.2.3",
+      "value": "2.2.4",
       "description": "The Ruby version you want to run on."
     },
     "LANG":{
