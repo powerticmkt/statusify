@@ -79,8 +79,6 @@ group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails', '~> 4.5'
-  gem 'regressor', github: 'ndea/regressor', branch: 'master'
-  gem 'shoulda-matchers'
-  gem 'zapata', github: 'nedomas/zapata'
+  gem 'shoulda-matchers'	
   gem 'faker'
 end
