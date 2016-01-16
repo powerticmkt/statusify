@@ -1,18 +1,11 @@
 language: ruby
 rvm:
-  - 2.2.4
-  - 2.3.0
+  - 2.2.3
 before_script:
   - psql -c 'create database statusify_test;' -U postgres
   - rm config/database.yml
   - cp config/database.yml.ci config/database.yml
 bundler_args: --without production
-gemfile:
-  - Gemfile
-  - rails-edge.gemfile
-matrix:
-  allow_failures:
-    - gemfile: rails-edge.gemfile
 notifications:
   slack: statusify:MjsJiVHnuAWedRhosYYnaJE8
 services:
