@@ -7,13 +7,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    if user_params[:password] != user_params[:password_confirmation]
-      flash[:danger] = 'Password does not match confirmation'
-      redirect_to(new_user_path) && return
-    end
+    password_does_not_match
     @user = User.new
     @user.email = user_params[:email]
     @user.password = user_params[:password]
+
     if @user.save
       flash[:success] = 'Created the user successfully'
       redirect_to root_path
@@ -29,7 +27,7 @@ class UsersController < ApplicationController
 
   def delete
     @user = User.find_by_id(params[:id])
-    if @user && @user.delete
+    if @user.delete
       flash[:success] = 'Deleted the user successfully'
     else
       flash[:danger] = 'An error occured'
@@ -45,5 +43,12 @@ class UsersController < ApplicationController
 
   def require_admin
     redirect_to(root_path) && return unless current_user.admin?
+  end
+
+  def password_does_not_match
+    if user_params[:password] != user_params[:password_confirmation]
+      flash[:danger] = 'Password does not match confirmation'
+      redirect_to(new_user_path) && return
+    end
   end
 end

@@ -1,34 +1,34 @@
 class SubscribersController < ApplicationController
+
+  before_action :activation_key, only: %i(activate unsubscribe)
+
   def create
     # Create the subscriber
     subscriber = Subscriber.new(subscriber_params)
     if subscriber.save
       flash[:success] = 'Check your mail to confirm your subscription.'
       SubscriberMailer.delay.activate_subscriber(subscriber)
-      redirect_to root_path
     else
       flash[:danger] = 'Please check the mail address before continuing.'
-      redirect_to root_path
     end
+    redirect_to root_path
   end
 
   def activate
     # Activate the subscriber
-    activation_key = params[:activation_key]
     subscriber = Subscriber.find_by_activation_key(activation_key)
     if subscriber && !subscriber.activated?
       subscriber.activated = true
       subscriber.save
       flash[:success] = "You will now receive all updates at #{subscriber.email}."
-    else !subscriber
-         flash[:danger] = 'Invalid activation key'
+    else
+      flash[:danger] = 'Invalid activation key'
     end
     redirect_to root_path
   end
 
   def unsubscribe
     # Find the subscriber by the activation key and delete it
-    activation_key = params[:activation_key]
     subscriber = Subscriber.find_by_activation_key(activation_key)
     if subscriber
       subscriber.delete
@@ -43,5 +43,9 @@ class SubscribersController < ApplicationController
 
   def subscriber_params
     params.permit(:email)
+  end
+
+  def activation_key
+    activation_key = params[:activation_key]
   end
 end
