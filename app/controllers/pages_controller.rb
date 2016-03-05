@@ -11,11 +11,11 @@ class PagesController < ApplicationController
   end
 
   def current_status_dot
-    if active_incidents.blank?
-      url = "#{Statusify.app_url}/up.svg"
-    else
-      url = "#{Statusify.app_url}/down.svg"
-    end
+    url = if active_incidents.blank?
+            "#{Statusify.app_url}/up.svg"
+          else
+            "#{Statusify.app_url}/down.svg"
+          end
     redirect_to url
   end
 end

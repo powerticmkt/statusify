@@ -58,11 +58,7 @@ module IncidentsHelper
       @dated_incidents = {}
       range.each do |date|
         i = Incident.where(created_at: date.beginning_of_day..date.end_of_day)
-        if !i.empty?
-          @dated_incidents[date] = i
-        else
-          @dated_incidents[date] = nil
-        end
+        @dated_incidents[date] = (i unless i.empty?)
       end
       @dated_incidents.sort { |a, b| b <=> a }.to_h
     end

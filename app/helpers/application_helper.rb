@@ -22,7 +22,7 @@ module ApplicationHelper
     if title
       "#{title} | #{app_name}"
     else
-      "#{app_name}"
+      app_name.to_s
     end
   end
 
